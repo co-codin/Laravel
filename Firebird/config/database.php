@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'firebird'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,6 +83,17 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
+        ],
+
+        'firebird' => [
+            'driver' => 'firebird',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3050'),
+            'database' => env('DB_DATABASE', 'examples'),
+            'username' => env('DB_USERNAME', 'SYSDBA'),
+            'password' => env('DB_PASSWORD', 'masterkey'),
+            'charset' => env('DB_CHARSET', 'UTF8'),
+            'engine_version' => '3.0.0',
         ],
 
     ],
