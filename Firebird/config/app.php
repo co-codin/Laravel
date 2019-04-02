@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Zofe\Rapyd\RapydServiceProvider::class,
+        Firebird\FirebirdServiceProvider::class,
     ],
 
     /*
