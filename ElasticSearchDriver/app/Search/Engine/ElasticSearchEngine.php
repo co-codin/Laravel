@@ -24,12 +24,10 @@ class ElasticSearchEngine extends Engine
     public function update($models)
     {
         $models->each(function ($model) {
-            $params = [
-                'index' => $model->searchableAs(),
-                'type' => $model->searchableAs(),
+            $params = $this->getRequestBody($model, [
                 'id' => $model->id,
                 'body' => $model->toSearchableArray()
-            ];
+            ]);
 
             $this->client->index($params);
         });
@@ -44,11 +42,9 @@ class ElasticSearchEngine extends Engine
     public function delete($models)
     {
         $models->each(function ($model) {
-            $params = [
-                'index' => $model->searchableAs(),
-                'type' => $model->searchableAs(),
+            $params = $this->getRequestBody($model, [
                 'id' => $model->id
-            ];
+            ]);
 
             $this->client->delete($params);
         });
@@ -70,9 +66,7 @@ class ElasticSearchEngine extends Engine
 
     protected function performSearch(Builder $builder, array $options = [])
     {
-        $params = array_merge_recursive([
-            'index' => $builder->model->searchableAs(),
-            'type' => $builder->model->searchableAs(),
+        $params = array_merge_recursive($this->getRequestBody($builder->model), [
             'body' => [
                 'from' => 0,
                 'size' => 5000,
@@ -153,5 +147,13 @@ class ElasticSearchEngine extends Engine
     public function flush($model)
     {
 
+    }
+
+    protected function getRequestBody($model, array $options = [])
+    {
+        return array_merge_recursive([
+            'index' => $model->searchableAs(),
+            'type' => $model->searchableAs(),
+        ], $options);
     }
 }
