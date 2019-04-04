@@ -107,7 +107,7 @@ class ElasticSearchEngine extends Engine
      */
     public function mapIds($results)
     {
-
+        return collect(array_get($results, 'hits.hits'))->pluck('_id')->values();
     }
 
     /**
