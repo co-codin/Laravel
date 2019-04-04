@@ -105,9 +105,14 @@ class ElasticSearchEngine extends Engine
      */
     public function map(Builder $builder, $results, $model)
     {
-        // $results from search public function
+        if (count($hits = array_get($results, 'hits.hits')) === 0) {
+            return $model->newCollection();
+        }
 
-        return $results;
+        return $model->getScoutModelsByIds(
+            $builder,
+            collect($hits)->pluck('_id')->values()->all()
+        );
     }
 
     /**
