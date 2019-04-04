@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Laravel\Scout\EngineManager;
 use Illuminate\Support\ServiceProvider;
+use App\Search\Engine\ElasticSearchEngine;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        resolve(EngineManager::class)->extend('elasticsearch', function () {
+            return new ElasticSearchEngine();
+        });
     }
 
     /**
