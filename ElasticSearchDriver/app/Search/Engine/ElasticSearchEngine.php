@@ -74,7 +74,7 @@ class ElasticSearchEngine extends Engine
                 'query' => [
                     'multi_match' => [
                         'query' => $builder->query ?? '',
-                        'fields' => ['username', 'name', 'email'],
+                        'fields' => $this->getSearchableFields($builder->model),
                         'type' => 'phrase_prefix'
                     ]
                 ]
@@ -82,6 +82,15 @@ class ElasticSearchEngine extends Engine
         ], $options);
 
         return $this->client->search($params);
+    }
+
+    protected function getSearchableFields($model)
+    {
+        if (!method_exists($model, 'searchableFields')) {
+            return [];
+        }
+
+        return $model->searchableFields();
     }
 
     /**
