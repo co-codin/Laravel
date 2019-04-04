@@ -2,6 +2,7 @@
 
 namespace App\Search\Engine;
 
+use Artisan;
 use Elasticsearch\Client;
 use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
@@ -151,6 +152,10 @@ class ElasticSearchEngine extends Engine
     {
         $this->client->indices()->delete([
             'index' => $model->searchableAs()
+        ]);
+
+        Artisan::call('scout:elasticsearch:create', [
+            'model' => get_class($model)
         ]);
     }
 
