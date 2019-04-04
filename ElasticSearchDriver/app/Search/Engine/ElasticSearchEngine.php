@@ -149,7 +149,9 @@ class ElasticSearchEngine extends Engine
      */
     public function flush($model)
     {
-
+        $this->client->indices()->delete([
+            'index' => $model->searchableAs()
+        ]);
     }
 
     protected function getRequestBody($model, array $options = [])
