@@ -93,7 +93,10 @@ class ElasticSearchEngine extends Engine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-
+        return $this->performSearch($builder, [
+            'from' => ($page - 1) * $perPage,
+            'size' => 10
+        ]);
     }
 
     /**
@@ -135,7 +138,7 @@ class ElasticSearchEngine extends Engine
      */
     public function getTotalCount($results)
     {
-
+        return array_get($results, 'hits.total', 0);
     }
 
     /**
