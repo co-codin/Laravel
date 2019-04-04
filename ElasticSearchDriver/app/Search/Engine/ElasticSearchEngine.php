@@ -2,8 +2,8 @@
 
 namespace App\Search\Engine;
 
+use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
-use Illuminate\Database\Eloquent\Builder;
 
 class ElasticSearchEngine extends Engine
 {
@@ -15,7 +15,7 @@ class ElasticSearchEngine extends Engine
      */
     public function update($models)
     {
-
+        
     }
 
     /**
