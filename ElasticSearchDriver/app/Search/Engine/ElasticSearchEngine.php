@@ -54,7 +54,21 @@ class ElasticSearchEngine extends Engine
      */
     public function search(Builder $builder)
     {
+        $params = [
+            'index' => $builder->model->searchableAs(),
+            'type' => $builder->model->searchableAs(),
+            'body' => [
+                'query' => [
+                    'multi_match' => [
+                        'query' => $builder->query,
+                        'fields' => ['username', 'name', 'email'],
+                        'type' => 'phrase_prefix'
+                    ]
+                ]
+            ]
+        ];
 
+        return $this->client->search($params);
     }
 
     /**
@@ -91,7 +105,9 @@ class ElasticSearchEngine extends Engine
      */
     public function map(Builder $builder, $results, $model)
     {
+        // $results from search public function
 
+        return $results;
     }
 
     /**
