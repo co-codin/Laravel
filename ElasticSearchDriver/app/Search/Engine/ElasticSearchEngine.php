@@ -54,10 +54,20 @@ class ElasticSearchEngine extends Engine
      */
     public function search(Builder $builder)
     {
-        $params = [
+        return $this->performSearch($builder, [
+            'from' => 0,
+            'size' => 3
+        ]);
+    }
+
+    protected function performSearch(Builder $builder, array $options = [])
+    {
+        $params = array_merge_recursive([
             'index' => $builder->model->searchableAs(),
             'type' => $builder->model->searchableAs(),
             'body' => [
+                'from' => 0,
+                'size' => 5000,
                 'query' => [
                     'multi_match' => [
                         'query' => $builder->query,
@@ -66,7 +76,7 @@ class ElasticSearchEngine extends Engine
                     ]
                 ]
             ]
-        ];
+        ], $options);
 
         return $this->client->search($params);
     }
