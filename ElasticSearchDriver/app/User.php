@@ -37,4 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'username' => $this->username,
+            'name' => $this->name
+        ];
+    }
 }
