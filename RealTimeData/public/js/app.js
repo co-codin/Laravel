@@ -1768,8 +1768,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    userId: {
+      required: true,
+      type: Number
+    }
+  },
   mounted: function mounted() {
-    Echo["private"]('users.1').listen('.points-given', function (e) {
+    Echo["private"]("users.".concat(this.userId)).listen('.points-given', function (e) {
       console.log(e);
     });
   }

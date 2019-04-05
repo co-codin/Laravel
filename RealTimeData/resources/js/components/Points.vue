@@ -4,8 +4,15 @@
 
 <script>
     export default {
+        props: {
+            userId: {
+                required: true,
+                type: Number
+            }
+        },
+
         mounted () {
-            Echo.private('users.1')
+            Echo.private(`users.${this.userId}`)
                 .listen('.points-given', (e) => {
                     console.log(e);
                 })

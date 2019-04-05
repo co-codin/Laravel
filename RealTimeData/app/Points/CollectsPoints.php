@@ -18,7 +18,7 @@ trait CollectsPoints
 
         $this->pointsRelation()->attach($model);
 
-        event(new PointsGiven());
+        event(new PointsGiven($this, $model));
     }
 
     public function points()
