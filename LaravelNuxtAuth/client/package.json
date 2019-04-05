@@ -11,6 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.4.1",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0"
   },
