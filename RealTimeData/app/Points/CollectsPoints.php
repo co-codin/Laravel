@@ -4,6 +4,7 @@ namespace App\Points;
 
 use Exception;
 use App\Points\Models\Point;
+use App\Points\Events\PointsGiven;
 use App\Points\Actions\ActionAbstract;
 use App\Points\Formatters\PointsFormatter;
 
@@ -16,6 +17,8 @@ trait CollectsPoints
         }
 
         $this->pointsRelation()->attach($model);
+
+        event(new PointsGiven());
     }
 
     public function points()
