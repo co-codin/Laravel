@@ -10,6 +10,6 @@ abstract class ActionAbstract
 
     public function getModel()
     {
-        return Point::whereKey($this->key())->first();
+        return Point::where('key', $this->key())->first();
     }
 }

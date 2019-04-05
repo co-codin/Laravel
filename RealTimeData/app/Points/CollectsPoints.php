@@ -14,10 +14,15 @@ trait CollectsPoints
             throw new Exception("Points model for key [{$action->key()}] not found.");
         }
 
-        $this->points()->attach($model);
+        $this->pointsRelation()->attach($model);
     }
 
     public function points()
+    {
+        return $this->pointsRelation->sum('points');
+    }
+
+    public function pointsRelation()
     {
         return $this->belongsToMany(Point::class)->withTimestamps();
     }
