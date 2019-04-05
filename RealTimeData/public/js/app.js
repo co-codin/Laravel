@@ -1767,16 +1767,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      points: this.initialPoints
+    };
+  },
   props: {
+    initialPoints: {
+      required: true,
+      type: String
+    },
     userId: {
       required: true,
       type: Number
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     Echo["private"]("users.".concat(this.userId)).listen('.points-given', function (e) {
-      console.log(e);
+      _this.points = e.user_points.shorthand;
     });
   }
 });
@@ -46997,7 +47010,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", [_vm._v("10")])
+  return _c("span", [_vm._v("\n    " + _vm._s(_vm.points) + "\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
