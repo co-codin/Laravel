@@ -8,9 +8,7 @@ trait CollectsPoints
 {
     public function givePoints($point)
     {
-        $model = Point::whereKey($point->key())->first();
-
-        $this->points()->attach($model);
+        $this->points()->attach($point->getModel());
     }
 
     public function points()

@@ -2,7 +2,9 @@
 
 namespace App\Points\Actions;
 
-class SolvedTopic
+use App\Points\Actions\ActionAbstract;
+
+class SolvedTopic extends ActionAbstract
 {
-    
+
 }
