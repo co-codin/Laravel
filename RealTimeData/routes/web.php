@@ -8,7 +8,7 @@ Route::get('/', function () {
 
     $user->givePoints(new SolvedTopic());
 
-    dd($user->points());
+    dd($user->points()->value());
 });
 
 Auth::routes();

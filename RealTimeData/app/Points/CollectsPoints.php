@@ -5,6 +5,7 @@ namespace App\Points;
 use Exception;
 use App\Points\Models\Point;
 use App\Points\Actions\ActionAbstract;
+use App\Points\Formatters\PointsFormatter;
 
 trait CollectsPoints
 {
@@ -19,7 +20,9 @@ trait CollectsPoints
 
     public function points()
     {
-        return $this->pointsRelation->sum('points');
+        return new PointsFormatter(
+            $this->pointsRelation->sum('points')
+        );
     }
 
     public function pointsRelation()
