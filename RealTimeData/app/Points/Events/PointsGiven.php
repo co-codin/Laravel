@@ -24,6 +24,11 @@ class PointsGiven implements ShouldBroadcast
         //
     }
 
+    public function broadcastAs()
+    {
+        return 'points-given';
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *
