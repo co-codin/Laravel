@@ -12,10 +12,9 @@
       </div>
     </div>
 
-    {{ loggedIn }}
-
     <div class="navbar-end">
 
+      <template v-if="!authenticated">
         <div class="navbar-item">
           <div class="field is-grouped">
             <p class="control">
@@ -31,18 +30,31 @@
             </p>
           </div>
         </div>
+      </template>
+
+      <template v-if="authenticated">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            {{ user.name }}
+          </a>
+
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" @click.prevent="logout">
+              Log out
+            </a>
+          </div>
+        </div>
+      </template>
     </div>
   </nav>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
-
-    export default {
-        computed: {
-            ...mapGetters({
-                loggedIn: 'auth/authenticated'
-            })
-        }
+  export default {
+    methods: {
+      logout () {
+        this.$auth.logout();
+      }
     }
+  }
 </script>
