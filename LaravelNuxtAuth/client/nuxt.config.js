@@ -64,7 +64,8 @@ export default {
           },
 
           logout: {
-
+              url: 'logout',
+              method: 'post'
           }
       }
   },
