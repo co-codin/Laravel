@@ -9,7 +9,7 @@
               <div class="field">
                 <div class="control">
                   <label for="email" class="label">Email address</label>
-                  <input class="input is-large" :class="{ 'is-danger': errors.email }" type="email" id="email" placeholder="e.g. billy@codecourse.com" autofocus="" v-model="form.email">
+                  <input class="input is-large" :class="{ 'is-danger': errors.email }" type="email" id="email" placeholder="e.g. elijah@elijah.com" autofocus="" v-model="form.email">
 
                   <p class="help is-danger" v-if="errors.email">
                     {{ errors.email[0] }}
@@ -49,7 +49,7 @@
 
 <script>
   export default {
-    middleware: 'guest',
+      middleware: 'guest',
     data () {
       return {
         form: {
