@@ -34,7 +34,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-      './plugins/mixins/user'
+      './plugins/mixins/user.js',
+      './plugins/axios.js',
+      './plugins/mixins/validation.js',
   ],
 
   /*

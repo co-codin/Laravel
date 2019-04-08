@@ -9,14 +9,22 @@
               <div class="field">
                 <div class="control">
                   <label for="email" class="label">Email address</label>
-                  <input class="input is-large" type="email" id="email" placeholder="e.g. billy@example.com" autofocus="" v-model="form.email">
+                  <input class="input is-large" :class="{ 'is-danger': errors.email }" type="email" id="email" placeholder="e.g. billy@codecourse.com" autofocus="" v-model="form.email">
+
+                  <p class="help is-danger" v-if="errors.email">
+                    {{ errors.email[0] }}
+                  </p>
                 </div>
               </div>
 
               <div class="field">
                 <div class="control">
                   <label for="password" class="label">Password</label>
-                  <input class="input is-large" type="password" id="password" v-model="form.password">
+                  <input class="input is-large" :class="{ 'is-danger': errors.password }" type="password" id="password" v-model="form.password">
+
+                  <p class="help is-danger" v-if="errors.password">
+                    {{ errors.password[0] }}
+                  </p>
                 </div>
               </div>
               <button class="button is-block is-info is-large is-fullwidth">Login</button>
@@ -40,13 +48,13 @@
     },
     methods: {
       async submit () {
-          await this.$auth.login({
-              data: this.form
-          })
+        await this.$auth.login({
+          data: this.form
+        })
 
-          this.$router.push({
-              path: '/'
-          })
+        this.$router.push({
+          path: this.$route.query.redirect || '/'
+        })
       }
     }
   }
