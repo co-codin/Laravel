@@ -40,7 +40,13 @@
     },
     methods: {
       async submit () {
-          await console.log('test');
+          await this.$auth.login({
+              data: this.form
+          })
+
+          this.$router.push({
+              path: '/'
+          })
       }
     }
   }
