@@ -12,6 +12,8 @@
       </div>
     </div>
 
+    {{ loggedIn }}
+
     <div class="navbar-end">
 
         <div class="navbar-item">
@@ -34,11 +36,13 @@
 </template>
 
 <script>
-  export default {
-    methods: {
-      logout () {
+    import { mapGetters } from 'vuex'
 
-      }
+    export default {
+        computed: {
+            ...mapGetters({
+                loggedIn: 'auth/authenticated'
+            })
+        }
     }
-  }
 </script>
