@@ -20,6 +20,15 @@ class File extends Model
         'finished',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($file) {
+            $file->identifier = uniqid(true);
+        });
+    }
+
     public function getRouteKeyName()
     {
         return 'identifier';
