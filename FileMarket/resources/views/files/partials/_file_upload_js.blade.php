@@ -8,6 +8,14 @@
         }
     })
 
+    @foreach($file->uploads as $upload)
+        drop.emit('addedfile', {
+            id: '{{ $upload->id }}',
+            name: '{{ $upload->filename }}',
+            size: '{{ $upload->size }}'
+        });
+    @endforeach
+
     drop.on('success', function (file, response) {
         file.id = response.id
     })
