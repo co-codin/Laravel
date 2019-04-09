@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\{User, FileApproval};
+use App\{User, FileApproval, Upload};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,6 +68,11 @@ class File extends Model
     protected function currentPropertiesDifferToGiven(array $properties)
     {
         return array_only($this->toArray(), self::APPROVAL_PROPERTIES) != $properties;
+    }
+
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
     }
 
     public function approvals()
