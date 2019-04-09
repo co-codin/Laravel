@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\File;
+use App\{File, FileApproval};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\File\{StoreFileRequest, UpdateFileRequest};
@@ -61,8 +61,9 @@ class FileController extends Controller
         $approvalProperties = $request->only(File::APPROVAL_PROPERTIES);
 
         if ($file->needsApproval($approvalProperties)) {
-            dd('needs approval');
-            return;
+            $file->createApproval($approvalProperties);
+
+            return back()->withSuccess('Thanks! We will review your changes soon.');
         }
         // $file->update($request->only(['live', 'price']));
 

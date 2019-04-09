@@ -60,6 +60,11 @@ class File extends Model
         return false;
     }
 
+    public function createApproval(array $approvalProperties)
+    {
+        $this->approvals()->create($approvalProperties);
+    }
+
     protected function currentPropertiesDifferToGiven(array $properties)
     {
         return array_only($this->toArray(), self::APPROVAL_PROPERTIES) != $properties;
