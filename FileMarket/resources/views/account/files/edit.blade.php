@@ -3,8 +3,7 @@
 @section('account.content')
     <h1 class="title">Make changes to {{ $file->title }}</h1>
 
-    <form action="" method="post" class="form">
-        {{-- {{ route('account.files.update', $file) }} --}}
+    <form action="{{ route('account.files.update', $file) }}" method="post" class="form">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 

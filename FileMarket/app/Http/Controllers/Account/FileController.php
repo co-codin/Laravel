@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\File\StoreFileRequest;
+use App\Http\Requests\File\{StoreFileRequest, UpdateFileRequest};
 
 class FileController extends Controller
 {
@@ -52,6 +52,11 @@ class FileController extends Controller
         return view('account.files.edit', [
             'file' => $file
         ]);
+    }
+
+    public function update(File $file, UpdateFileRequest $request)
+    {
+        dd('working');
     }
 
     protected function createAndReturnSkeletonFile()
