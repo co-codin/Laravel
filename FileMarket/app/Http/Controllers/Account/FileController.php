@@ -12,7 +12,7 @@ class FileController extends Controller
     public function index()
     {
         $files = auth()->user()->files()->latest()->finished()->get();
-        
+
         return view('account.files.index', [
             'files' => $files
         ]);
@@ -43,6 +43,15 @@ class FileController extends Controller
 
         return redirect()->route('account.files.index')
                          ->withSuccess('Thanks, submitted for review.');
+    }
+
+    public function edit(File $file)
+    {
+        $this->authorize('touch', $file);
+
+        return view('account.files.edit', [
+            'file' => $file
+        ]);
     }
 
     protected function createAndReturnSkeletonFile()
