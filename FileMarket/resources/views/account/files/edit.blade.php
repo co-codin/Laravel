@@ -11,8 +11,6 @@
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 
-        <input type="hidden" name="live" value="false">
-
         <div class="field">
             <div id="file" class="dropzone"></div>
             @if ($errors->has('uploads'))
@@ -76,4 +74,8 @@
             <p>Your file changes may be subject to review.</p>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+    @include('files.partials._file_upload_js')
 @endsection
