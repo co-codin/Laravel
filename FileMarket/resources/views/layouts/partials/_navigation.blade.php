@@ -22,11 +22,6 @@
                     Your account
                 </a>
 
-                @role('admin')
-                    <a href="{{ route('admin.index') }}" class="nav-item">
-                        Admin
-                    </a>
-                @endrole
             @else
                 <a href="{{ route('login') }}" class="nav-item">
                     Sign in
