@@ -40,6 +40,10 @@ class UploadController extends Controller
         $this->authorize('touch', $file);
         $this->authorize('touch', $upload);
 
+        if ($file->uploads->count() === 1) {
+            return response()->json(null, 422);
+        }
+
         $upload->delete();
     }
 
