@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\File;
 
+use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\File\StoreFileRequest;
 
 class UpdateFileRequest extends StoreFileRequest
@@ -23,7 +24,7 @@ class UpdateFileRequest extends StoreFileRequest
      */
     public function rules()
     {
-        array_merge(parent::rules(), [
+        return array_merge(parent::rules(), [
             'live' => ''
         ]);
     }

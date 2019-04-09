@@ -56,7 +56,17 @@ class FileController extends Controller
 
     public function update(File $file, UpdateFileRequest $request)
     {
-        dd('working');
+        $this->authorize('touch', $file);
+
+        $approvalProperties = $request->only(File::APPROVAL_PROPERTIES);
+
+        if ($file->needsApproval($approvalProperties)) {
+            dd('needs approval');
+            return;
+        }
+        // $file->update($request->only(['live', 'price']));
+
+        // return back()->withSuccess('File updated!');
     }
 
     protected function createAndReturnSkeletonFile()
