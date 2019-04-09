@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\User;
+use App\{User, FileApproval};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,6 +43,11 @@ class File extends Model
     public function isFree()
     {
         return $this->price == 0;
+    }
+
+    public function approvals()
+    {
+        return $this->hasMany(FileApproval::class);
     }
 
     public function user()
