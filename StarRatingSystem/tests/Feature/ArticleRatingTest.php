@@ -2,21 +2,24 @@
 
 namespace Tests\Feature;
 
+use App\Article;
+use App\User;
+use InvalidArgumentException;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArticleRatingTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    protected function setUp()
     {
-        $response = $this->get('/');
+        parent::setUp();
+        $this->article = factory(Article::class)->create();
+        $this->user = factory(User::class)->create();
+    }
 
-        $response->assertStatus(200);
+    public function test_it_can_be_rated()
+    {
+        $this->article->rate(5, $this->user);
+
+        $this->assertCount(1, $this->article->ratings);
     }
 }
