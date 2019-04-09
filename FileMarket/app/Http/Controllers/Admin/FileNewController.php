@@ -16,9 +16,11 @@ class FileNewController extends Controller
         return view('admin.files.new.index', compact('files'));
     }
 
-    public function update()
+    public function update(File $file)
     {
-
+        $file->approve();
+        
+        return back()->withSuccess("{$file->title} has been approved");
     }
 
     public function destroy()
