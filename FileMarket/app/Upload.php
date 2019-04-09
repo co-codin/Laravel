@@ -3,12 +3,13 @@
 namespace App;
 
 use App\{User, File};
+use App\Traits\HasApprovals;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Upload extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasApprovals;
 
     protected $fillable = [
         'filename',

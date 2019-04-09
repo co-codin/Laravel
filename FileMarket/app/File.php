@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\HasApprovals;
 use App\{User, FileApproval, Upload};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class File extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasApprovals;
 
     const APPROVAL_PROPERTIES = [
         'title',
@@ -57,7 +58,7 @@ class File extends Model
             return true;
         }
 
-        if ($this->uploads->where('approved', false)->count()) {
+        if ($this->uploads()->unapproved()->count()) {
             return true;
         }
 
