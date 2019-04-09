@@ -61,3 +61,7 @@
         </div>
     </form>
 @endsection
+
+@section('scripts')
+    @include('files.partials._file_upload_js')
+@endsection

@@ -3,3 +3,9 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 @import "node_modules/bulma/bulma";
+@import "node_modules/dropzone/src/dropzone.scss";
+
+.dropzone {
+    margin-bottom: 20px;
+    min-height: auto;
+}
