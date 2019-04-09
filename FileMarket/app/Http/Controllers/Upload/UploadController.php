@@ -35,6 +35,14 @@ class UploadController extends Controller
         ]);
     }
 
+    public function destroy(File $file, Upload $upload)
+    {
+        $this->authorize('touch', $file);
+        $this->authorize('touch', $upload);
+
+        $upload->delete();
+    }
+
     protected function storeUpload(File $file, UploadedFile $uploadedFile)
     {
         $upload = new Upload;
