@@ -66,6 +66,10 @@ class FileController extends Controller
 
             return back()->withSuccess('Thanks! We will review your changes soon.');
         }
+
+        $file->update($request->only(['live', 'price']));
+
+        return back()->withSuccess('File updated!');
     }
 
     protected function createAndReturnSkeletonFile()

@@ -57,6 +57,10 @@ class File extends Model
             return true;
         }
 
+        if ($this->uploads->where('approved', false)->count()) {
+            return true;
+        }
+
         return false;
     }
 
