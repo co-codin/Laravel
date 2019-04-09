@@ -3,6 +3,10 @@
 @section('account.content')
     <h1 class="title">Make changes to {{ $file->title }}</h1>
 
+    @if ($approval)
+        @include('account.files.partials._changes', compact('approval', 'file'))
+    @endif
+
     <form action="{{ route('account.files.update', $file) }}" method="post" class="form">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

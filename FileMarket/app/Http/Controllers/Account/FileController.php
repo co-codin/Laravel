@@ -50,7 +50,8 @@ class FileController extends Controller
         $this->authorize('touch', $file);
 
         return view('account.files.edit', [
-            'file' => $file
+            'file' => $file,
+            'approval' => $file->approvals->first()
         ]);
     }
 
@@ -65,9 +66,6 @@ class FileController extends Controller
 
             return back()->withSuccess('Thanks! We will review your changes soon.');
         }
-        // $file->update($request->only(['live', 'price']));
-
-        // return back()->withSuccess('File updated!');
     }
 
     protected function createAndReturnSkeletonFile()
