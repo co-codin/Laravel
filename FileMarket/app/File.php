@@ -42,11 +42,23 @@ class File extends Model
         return 'identifier';
     }
 
+    public function deleteAllApprovals()
+    {
+        $this->approvals()->delete();
+    }
+
+    public function mergeApprovalProperties()
+    {
+        $this->update(array_only(
+            $this->approvals->first()->toArray(),
+            self::APPROVAL_PROPERTIES
+        ));
+    }
+
     public function approve()
     {
         $this->updateToBeVisible();
         $this->approveAllUploads();
-
     }
 
     public function approveAllUploads()
