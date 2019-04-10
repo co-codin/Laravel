@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 Route::group(['prefix' => '/{file}/checkout', 'namespace' => 'Checkout'], function () {
     Route::post('/free', 'CheckoutController@free')->name('checkout.free');
-    
+
     Route::post('/payment', 'CheckoutController@payment')->name('checkout.payment');
 });
 
@@ -49,3 +49,4 @@ Route::delete('/{file}/upload/{upload}', 'Upload\UploadController@destroy')->nam
 
 
 Route::get('/{file}', 'Files\FileController@show')->name('files.show');
+Route::get('/{file}/{sale}/download', 'Files\FileDownloadController@show')->name('files.download');
