@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Traits\HasApprovals;
-use App\{User, FileApproval, Upload};
+use App\{User, FileApproval, Upload, Sale};
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -40,6 +40,16 @@ class File extends Model
     public function getRouteKeyName()
     {
         return 'identifier';
+    }
+
+    public function getUploadList()
+    {
+        return $this->uploads()->approved()->get()->pluck('path')->toArray();
+    }
+
+    public function matchesSale(Sale $sale)
+    {
+        return $this->sales->contains($sale);
     }
 
     public function visible()

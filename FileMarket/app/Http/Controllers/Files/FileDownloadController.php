@@ -21,5 +21,11 @@ class FileDownloadController extends Controller
         if (!$file->visible()) {
             return abort(403);
         }
+
+        if (!$file->matchesSale($sale)) {
+            return abort(403);
+        }
+
+        dd($file->getUploadList());
     }
 }
