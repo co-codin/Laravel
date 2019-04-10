@@ -5,6 +5,7 @@ namespace App\Jobs\Checkout;
 use App\File;
 use App\Sale;
 use Illuminate\Bus\Queueable;
+use App\Events\Checkout\SaleCreated;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -47,5 +48,7 @@ class CreateSale
         $sale->file()->associate($this->file);
         $sale->user()->associate($this->file->user);
         $sale->save();
+
+        event(new SaleCreated($sale));
     }
 }
