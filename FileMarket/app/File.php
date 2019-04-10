@@ -42,6 +42,11 @@ class File extends Model
         return 'identifier';
     }
 
+    public function deleteUnapprovedUploads()
+    {
+        $this->uploads()->unapproved()->delete();
+    }
+
     public function deleteAllApprovals()
     {
         $this->approvals()->delete();

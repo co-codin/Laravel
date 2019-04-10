@@ -20,12 +20,15 @@ class FileUpdatedController extends Controller
         $file->mergeApprovalProperties();
         $file->approveAllUploads();
         $file->deleteAllApprovals();
-        
+
         return back()->withSuccess("{$file->title} has been approved");
     }
 
     public function destroy(File $file)
     {
-
+        $file->deleteAllApprovals();
+        $file->deleteUnapprovedUploads();
+        
+        return back()->withSuccess("{$file->title} changes have been rejected.");
     }
 }
