@@ -42,6 +42,19 @@ class File extends Model
         return 'identifier';
     }
 
+    public function visible()
+    {
+        if (auth()->user()->isAdmin()) {
+            return true;
+        }
+
+        if (auth()->user()->isTheSameAs($this->user)) {
+            return true;
+        }
+
+        return $this->live && $this->approved;
+    }
+
     public function deleteUnapprovedUploads()
     {
         $this->uploads()->unapproved()->delete();

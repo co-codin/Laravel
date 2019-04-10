@@ -29,6 +29,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function isTheSameAs(User $user)
+    {
+        return $this->id === $user->id;
+    }
+
     public function files()
     {
         return $this->hasMany(File::class);
