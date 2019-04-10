@@ -38,3 +38,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
 Route::post('/{file}/upload', 'Upload\UploadController@store')->name('upload.store');
 Route::delete('/{file}/upload/{upload}', 'Upload\UploadController@destroy')->name('upload.destroy');
+
+
+Route::get('/{file}', 'Files\FileController@show')->name('files.show');
