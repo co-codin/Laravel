@@ -4,14 +4,17 @@
         <div class="media-body">
             <p class="mb-2">
                 <strong>{{ comment.user.name }}</strong>
+                <template v-if="comment.child">
+                    repied
+                </template>
                 {{ comment.created_at }}
             </p>
             <p>
                 {{ comment.body }}
             </p>
 
-            <ul class="list-inline">
-                <li class="list-inline-item">
+            <ul class="list-inline" v-if="links">
+                <li class="list-inline-item" v-if="!comment.child">
                     <a href="#" @click.prevent="reply">Reply</a>
                 </li>
             </ul>
@@ -32,6 +35,11 @@
     export default {
         name: 'comment',
         props: {
+            links: {
+                default: true,
+                type: Boolean
+            },
+
             comment: {
                 required: true,
                 type: Object

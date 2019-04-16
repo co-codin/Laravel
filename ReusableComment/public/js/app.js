@@ -1804,11 +1804,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'comment',
   props: {
+    links: {
+      "default": true,
+      type: Boolean
+    },
     comment: {
       required: true,
       type: Object
@@ -1836,6 +1843,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Comment */ "./resources/js/components/comments/Comment.vue");
+/* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../bus */ "./resources/js/bus.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -1862,6 +1872,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     comment: {
@@ -1880,7 +1892,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    store: function store() {}
+    store: function store() {},
+    cancel: function cancel() {
+      _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('comment:reply-cancelled');
+    }
   }
 });
 
@@ -1971,9 +1986,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     CommentReply: _CommentReply__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.loadComments(1);
     _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:stored', this.prependComment);
     _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:reply', this.setReplying);
+    _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:reply-cancelled', function () {
+      return _this.reply = null;
+    });
   },
   methods: {
     loadComments: function () {
@@ -38253,34 +38273,47 @@ var render = function() {
       "div",
       { staticClass: "media-body" },
       [
-        _c("p", { staticClass: "mb-2" }, [
-          _c("strong", [_vm._v(_vm._s(_vm.comment.user.name))]),
-          _vm._v(
-            "\n            " + _vm._s(_vm.comment.created_at) + "\n        "
-          )
-        ]),
+        _c(
+          "p",
+          { staticClass: "mb-2" },
+          [
+            _c("strong", [_vm._v(_vm._s(_vm.comment.user.name))]),
+            _vm._v(" "),
+            _vm.comment.child
+              ? [_vm._v("\n                repied\n            ")]
+              : _vm._e(),
+            _vm._v(
+              "\n            " + _vm._s(_vm.comment.created_at) + "\n        "
+            )
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("p", [
           _vm._v("\n            " + _vm._s(_vm.comment.body) + "\n        ")
         ]),
         _vm._v(" "),
-        _c("ul", { staticClass: "list-inline" }, [
-          _c("li", { staticClass: "list-inline-item" }, [
-            _c(
-              "a",
-              {
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.reply($event)
-                  }
-                }
-              },
-              [_vm._v("Reply")]
-            )
-          ])
-        ]),
+        _vm.links
+          ? _c("ul", { staticClass: "list-inline" }, [
+              !_vm.comment.child
+                ? _c("li", { staticClass: "list-inline-item" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.reply($event)
+                          }
+                        }
+                      },
+                      [_vm._v("Reply")]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _vm.comment.children
           ? [
@@ -38329,7 +38362,7 @@ var render = function() {
     [
       _c("h3", { staticClass: "mb-5" }, [_vm._v("Replying to comment")]),
       _vm._v(" "),
-      _c("comment", { attrs: { comment: _vm.comment } }),
+      _c("comment", { attrs: { comment: _vm.comment, links: false } }),
       _vm._v(" "),
       _c(
         "form",
@@ -38367,31 +38400,35 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Reply")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-link",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.cancel($event)
+                  }
+                }
+              },
+              [_vm._v("Cancel")]
+            )
+          ])
         ]
       )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Reply")]
-      ),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-link", attrs: { href: "#" } }, [
-        _vm._v("Cancel")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

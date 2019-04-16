@@ -59,6 +59,7 @@
 
             bus.$on('comment:stored', this.prependComment)
             bus.$on('comment:reply', this.setReplying)
+            bus.$on('comment:reply-cancelled', () => this.reply = null)
         },
 
         methods: {

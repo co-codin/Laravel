@@ -2,7 +2,7 @@
     <div>
         <h3 class="mb-5">Replying to comment</h3>
 
-        <comment :comment="comment" />
+        <comment :comment="comment" :links="false" />
 
         <form @submit.prevent="store" id="reply">
             <div class="form-group">
@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Reply</button>
-                <a href="#" class="btn btn-link">Cancel</a>
+                <a href="#" @click.prevent="cancel" class="btn btn-link">Cancel</a>
             </div>
         </form>
     </div>
@@ -25,6 +25,8 @@
 
 <script>
     import Comment from './Comment'
+    import bus from '../../bus'
+    import axios from 'axios'
 
     export default {
         props: {
@@ -49,6 +51,10 @@
         methods: {
             store () {
 
+            },
+
+            cancel () {
+                bus.$emit('comment:reply-cancelled')
             }
         }
     }
