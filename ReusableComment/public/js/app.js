@@ -1775,6 +1775,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Comment */ "./resources/js/components/comments/Comment.vue");
 //
 //
 //
@@ -1791,12 +1792,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'comment',
   props: {
     comment: {
       required: true,
       type: Object
     }
+  },
+  components: {
+    Comment: _Comment__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -38152,16 +38163,39 @@ var render = function() {
   return _c("li", { staticClass: "media mt-4 mb-4" }, [
     _c("img", { staticClass: "mr-3", attrs: { src: _vm.comment.user.avatar } }),
     _vm._v(" "),
-    _c("div", { staticClass: "media-body" }, [
-      _c("p", { staticClass: "mb-2" }, [
-        _c("strong", [_vm._v(_vm._s(_vm.comment.user.name))]),
-        _vm._v("\n            " + _vm._s(_vm.comment.created_at) + "\n        ")
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n            " + _vm._s(_vm.comment.body) + "\n        ")
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "media-body" },
+      [
+        _c("p", { staticClass: "mb-2" }, [
+          _c("strong", [_vm._v(_vm._s(_vm.comment.user.name))]),
+          _vm._v(
+            "\n            " + _vm._s(_vm.comment.created_at) + "\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n            " + _vm._s(_vm.comment.body) + "\n        ")
+        ]),
+        _vm._v(" "),
+        _vm.comment.children
+          ? [
+              _c(
+                "ul",
+                { staticClass: "list-unstyled" },
+                _vm._l(_vm.comment.children, function(child) {
+                  return _c("comment", {
+                    key: child.id,
+                    attrs: { comment: child }
+                  })
+                }),
+                1
+              )
+            ]
+          : _vm._e()
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
