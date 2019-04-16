@@ -1840,6 +1840,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -1853,7 +1854,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      comments: []
+      comments: [],
+      meta: []
     };
   },
   components: {
@@ -1883,8 +1885,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 comments = _context.sent;
                 this.comments = comments.data.data;
+                this.meta = comments.data.meta;
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -38078,6 +38081,10 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h3", { staticClass: "mb-5" }, [
+        _vm._v(_vm._s(_vm.meta.total) + " comments")
+      ]),
+      _vm._v(" "),
       _c("new-comment", { attrs: { endpoint: _vm.endpoint } }),
       _vm._v(" "),
       _vm.comments.length
