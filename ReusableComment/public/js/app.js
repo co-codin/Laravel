@@ -1779,7 +1779,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    comment: {
+      required: true,
+      type: Object
+    }
+  }
+});
 
 /***/ }),
 
@@ -38019,7 +38038,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("comment")])
+  return _c("li", { staticClass: "media mt-4 mb-4" }, [
+    _c("img", { staticClass: "mr-3", attrs: { src: _vm.comment.user.avatar } }),
+    _vm._v(" "),
+    _c("div", { staticClass: "media-body" }, [
+      _c("p", { staticClass: "mb-2" }, [
+        _c("strong", [_vm._v(_vm._s(_vm.comment.user.name))]),
+        _vm._v("\n            " + _vm._s(_vm.comment.created_at) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("\n            " + _vm._s(_vm.comment.body) + "\n        ")
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
