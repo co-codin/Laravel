@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-if="reply">
-            <p>{{ reply }}</p>
+            <comment-reply :comment="reply" />
         </template>
         <template v-else>
             <h3 class="mb-5">{{ meta.total }} comments</h3>
@@ -31,6 +31,7 @@
     import bus from '../../bus'
     import NewComment from './NewComment'
     import Comment from './Comment'
+    import CommentReply from './CommentReply'
     import axios from 'axios'
 
     export default {
@@ -50,7 +51,7 @@
         },
 
         components: {
-            NewComment, Comment
+            NewComment, Comment, CommentReply
         },
 
         mounted () {
