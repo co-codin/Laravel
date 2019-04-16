@@ -11,6 +11,8 @@ class CommentReplyController extends Controller
 {
     public function store(Comment $comment, Request $request)
     {
+        $this->authorize('reply', $comment);
+        
         $this->validate($request, [
             'body' => 'required|max:5000'
         ]);
