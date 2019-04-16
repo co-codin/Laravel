@@ -2035,6 +2035,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:reply-cancelled', function () {
       return _this.reply = null;
     });
+    _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:replied', this.appendReply);
   },
   methods: {
     loadComments: function () {
@@ -2167,6 +2168,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return prependComment;
     }(),
+    appendReply: function appendReply(_ref) {
+      var comment = _ref.comment,
+          reply = _ref.reply;
+
+      _.find(this.comments, {
+        id: comment.id
+      }).children.push(reply);
+    },
     setReplying: function setReplying(comment) {
       this.reply = comment;
     }

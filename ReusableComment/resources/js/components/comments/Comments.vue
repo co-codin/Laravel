@@ -60,6 +60,7 @@
             bus.$on('comment:stored', this.prependComment)
             bus.$on('comment:reply', this.setReplying)
             bus.$on('comment:reply-cancelled', () => this.reply = null)
+            bus.$on('comment:replied', this.appendReply)
         },
 
         methods: {
@@ -91,6 +92,10 @@
                 if (this.meta.current_page < this.meta.last_page) {
                     this.comments.pop()
                 }
+            },
+
+            appendReply ({ comment, reply }) {
+                _.find(this.comments, { id: comment.id }).children.push(reply)
             },
 
             setReplying (comment) {
