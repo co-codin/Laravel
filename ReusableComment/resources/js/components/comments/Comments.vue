@@ -1,24 +1,29 @@
 <template>
     <div>
-        <h3 class="mb-5">{{ meta.total }} comments</h3>
-        <new-comment
-                :endpoint="endpoint"
-                />
-        <template v-if="comments.length">
-            <ul class="list-unstyled">
-                <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
-            </ul>
+        <template v-if="reply">
+            <p>{{ reply }}</p>
         </template>
-        <p class="mt-4" v-else>
-            No comments to display
-        </p>
+        <template v-else>
+            <h3 class="mb-5">{{ meta.total }} comments</h3>
+            <new-comment
+                    :endpoint="endpoint"
+                    />
+            <template v-if="comments.length">
+                <ul class="list-unstyled">
+                    <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+                </ul>
+            </template>
+            <p class="mt-4" v-else>
+                No comments to display
+            </p>
 
-        <a href="#"
-           class="btn btn-light btn-block"
-           @click.prevent="loadMore"
-           v-if="meta.current_page < meta.last_page"
-           >
-           show more</a>
+            <a href="#"
+               class="btn btn-light btn-block"
+               @click.prevent="loadMore"
+               v-if="meta.current_page < meta.last_page"
+               >
+               show more</a>
+        </template>
     </div>
 </template>
 
@@ -39,7 +44,8 @@
         data () {
             return {
                 comments: [],
-                meta: []
+                meta: [],
+                reply: null
             }
         },
 
@@ -51,6 +57,7 @@
             this.loadComments(1)
 
             bus.$on('comment:stored', this.prependComment)
+            bus.$on('comment:reply', this.setReplying)
         },
 
         methods: {
@@ -82,6 +89,10 @@
                 if (this.meta.current_page < this.meta.last_page) {
                     this.comments.pop()
                 }
+            },
+
+            setReplying (comment) {
+                this.reply = comment
             }
         }
     }
