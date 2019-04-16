@@ -12,7 +12,7 @@ class CourseCommentController extends Controller
     public function index(Course $course)
     {
         return CommentResource::collection(
-            $course->comments()->with(['children', 'user'])->paginate(1)
+            $course->comments()->with(['children', 'user'])->paginate(3)
         );
     }
 
