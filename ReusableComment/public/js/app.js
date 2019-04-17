@@ -1807,6 +1807,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1823,6 +1833,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     Comment: _Comment__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      editing: false
+    };
   },
   methods: {
     reply: function reply() {
@@ -1981,6 +1996,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -38859,11 +38875,19 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _c("p", [
-            _vm._v("\n            " + _vm._s(_vm.comment.body) + "\n        ")
-          ]),
+          _vm.editing
+            ? [_vm._v("\n            editing\n        ")]
+            : [
+                _c("p", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.comment.body) +
+                      "\n            "
+                  )
+                ])
+              ],
           _vm._v(" "),
-          _vm.links
+          _vm.links && _vm.user.authenticated && !_vm.editing
             ? _c("ul", { staticClass: "list-inline" }, [
                 !_vm.comment.child
                   ? _c("li", { staticClass: "list-inline-item" }, [
@@ -38881,7 +38905,23 @@ var render = function() {
                         [_vm._v("Reply")]
                       )
                     ])
-                  : _vm._e()
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("li", { staticClass: "list-inline-item" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.editing = true
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  )
+                ])
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -39031,7 +39071,9 @@ var render = function() {
               _vm._v(_vm._s(_vm.meta.total) + " comments")
             ]),
             _vm._v(" "),
-            _c("new-comment", { attrs: { endpoint: _vm.endpoint } }),
+            _vm.user.authenticated
+              ? _c("new-comment", { attrs: { endpoint: _vm.endpoint } })
+              : _vm._e(),
             _vm._v(" "),
             _vm.comments.length
               ? [

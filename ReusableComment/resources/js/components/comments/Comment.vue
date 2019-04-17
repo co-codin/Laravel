@@ -9,13 +9,23 @@
                 </template>
                 {{ comment.created_at }}
             </p>
-            <p>
-                {{ comment.body }}
-            </p>
 
-            <ul class="list-inline" v-if="links">
+            <template v-if="editing">
+                editing
+            </template>
+            <template v-else>
+                <p>
+                    {{ comment.body }}
+                </p>
+            </template>
+
+            <ul class="list-inline" v-if="links && user.authenticated && !editing">
                 <li class="list-inline-item" v-if="!comment.child">
                     <a href="#" @click.prevent="reply">Reply</a>
+                </li>
+
+                <li class="list-inline-item">
+                    <a href="#" @click.prevent="editing = true">Edit</a>
                 </li>
             </ul>
 
@@ -48,6 +58,12 @@
 
         components: {
             Comment
+        },
+
+        data () {
+            return {
+                editing: false
+            }
         },
 
         methods: {
