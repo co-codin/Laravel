@@ -11,7 +11,7 @@
             </p>
 
             <template v-if="editing">
-                editing
+                <comment-edit :comment="comment" />
             </template>
             <template v-else>
                 <p>
@@ -40,6 +40,7 @@
 
 <script>
     import Comment from './Comment'
+    import CommentEdit from './CommentEdit'
     import bus from '../../bus'
 
     export default {
@@ -57,7 +58,7 @@
         },
 
         components: {
-            Comment
+            Comment, CommentEdit
         },
 
         data () {
