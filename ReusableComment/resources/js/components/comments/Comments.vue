@@ -33,6 +33,8 @@
     import Comment from './Comment'
     import CommentReply from './CommentReply'
     import axios from 'axios'
+    import VueScrollTo from 'vue-scrollto'
+
 
     export default {
         props: {
@@ -60,7 +62,12 @@
             bus.$on('comment:stored', this.prependComment)
             bus.$on('comment:reply', this.setReplying)
             bus.$on('comment:reply-cancelled', () => this.reply = null)
-            bus.$on('comment:replied', this.appendReply)
+
+            bus.$on('comment:replied', ({ comment, reply }) => {
+                this.appendReply(comment, reply)
+                this.scrollToComment(reply)
+            })
+
         },
 
         methods: {
@@ -94,12 +101,18 @@
                 }
             },
 
-            appendReply ({ comment, reply }) {
+            appendReply (comment, reply) {
                 _.find(this.comments, { id: comment.id }).children.push(reply)
             },
 
             setReplying (comment) {
                 this.reply = comment
+            },
+
+            scrollToComment (comment) {
+                setTimeout(() => {
+                    VueScrollTo.scrollTo(`#comment-${comment.id}`, 500)
+                }, 100)
             }
         }
     }

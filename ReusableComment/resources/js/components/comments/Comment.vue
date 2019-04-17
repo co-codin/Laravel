@@ -1,5 +1,5 @@
 <template>
-    <li class="media mt-4 mb-4">
+    <li class="media mt-4 mb-4" :id="`comment-${comment.id}`">
         <img class="mr-3" :src="comment.user.avatar">
         <div class="media-body">
             <p class="mb-2">

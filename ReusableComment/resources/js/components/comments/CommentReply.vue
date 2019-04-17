@@ -27,6 +27,7 @@
     import Comment from './Comment'
     import bus from '../../bus'
     import axios from 'axios'
+    import VueScrollTo from 'vue-scrollto'
 
     export default {
         props: {
@@ -63,6 +64,10 @@
             cancel () {
                 bus.$emit('comment:reply-cancelled')
             }
+        },
+
+        mounted () {
+            VueScrollTo.scrollTo('#reply', 500)
         }
     }
 </script>
