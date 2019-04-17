@@ -39,6 +39,10 @@
         methods: {
             patch () {
 
+            },
+
+            cancel () {
+                bus.$emit('comment:edit-cancelled', this.comment)
             }
         }
     }

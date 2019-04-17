@@ -1842,6 +1842,15 @@ __webpack_require__.r(__webpack_exports__);
       editing: false
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    _bus__WEBPACK_IMPORTED_MODULE_2__["default"].$on('comment:edit-cancelled', function (comment) {
+      if (comment.id === _this.comment.id) {
+        _this.editing = false;
+      }
+    });
+  },
   methods: {
     reply: function reply() {
       _bus__WEBPACK_IMPORTED_MODULE_2__["default"].$emit('comment:reply', this.comment);
@@ -1898,7 +1907,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    patch: function patch() {}
+    patch: function patch() {},
+    cancel: function cancel() {
+      _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('comment:edit-cancelled', this.comment);
+    }
   }
 });
 
@@ -38963,21 +38975,23 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("li", { staticClass: "list-inline-item" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.editing = true
-                        }
-                      }
-                    },
-                    [_vm._v("Edit")]
-                  )
-                ])
+                _vm.comment.owner
+                  ? _c("li", { staticClass: "list-inline-item" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.editing = true
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      )
+                    ])
+                  : _vm._e()
               ])
             : _vm._e(),
           _vm._v(" "),

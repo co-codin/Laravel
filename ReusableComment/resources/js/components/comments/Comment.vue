@@ -24,7 +24,7 @@
                     <a href="#" @click.prevent="reply">Reply</a>
                 </li>
 
-                <li class="list-inline-item">
+                <li class="list-inline-item" v-if="comment.owner"> 
                     <a href="#" @click.prevent="editing = true">Edit</a>
                 </li>
             </ul>
@@ -65,6 +65,14 @@
             return {
                 editing: false
             }
+        },
+
+        mounted () {
+            bus.$on('comment:edit-cancelled', (comment) => {
+                if (comment.id === this.comment.id) {
+                    this.editing = false
+                }
+            })
         },
 
         methods: {
