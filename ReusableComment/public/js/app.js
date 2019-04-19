@@ -2308,6 +2308,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return prependComment;
     }(),
     appendReply: function appendReply(comment, reply) {
+      // if (comment.child) {
+      //     let parentComment = _.find(this.comments, { id: comment.parent_id })
+      //
+      //     let childComment = parentComment.children.find((child) => {
+      //         return child.id === comment.id
+      //     })
+      //
+      //     _.assign(childComment, comment)
+      //
+      //     return
+      // }
+      if (comment.child) {
+        _.assign(_.find(this.comments, {
+          id: comment.parent_id
+        }).children.find(function (child) {
+          return child.id == comment.id;
+        }), comment);
+
+        return;
+      }
+
       _.find(this.comments, {
         id: comment.id
       }).children.push(reply);
