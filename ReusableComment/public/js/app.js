@@ -1869,9 +1869,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../bus */ "./resources/js/bus.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../bus */ "./resources/js/bus.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -1907,9 +1915,39 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    patch: function patch() {},
+    patch: function () {
+      var _patch = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var comment;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.patch("/comments/".concat(this.comment.id), this.form);
+
+              case 2:
+                comment = _context.sent;
+                _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('comment:edited', comment.data.data);
+                this.cancel();
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function patch() {
+        return _patch.apply(this, arguments);
+      }
+
+      return patch;
+    }(),
     cancel: function cancel() {
-      _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('comment:edit-cancelled', this.comment);
+      _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('comment:edit-cancelled', this.comment);
     }
   }
 });
@@ -2136,6 +2174,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       _this.scrollToComment(reply);
     });
+    _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$on('comment:edited', this.editComment);
   },
   methods: {
     loadComments: function () {
@@ -2280,6 +2319,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       setTimeout(function () {
         vue_scrollto__WEBPACK_IMPORTED_MODULE_6___default.a.scrollTo("#comment-".concat(comment.id), 500);
       }, 100);
+    },
+    editComment: function editComment(comment) {
+      _.assign(_.find(this.comments, {
+        id: comment.id
+      }), comment);
     }
   }
 });

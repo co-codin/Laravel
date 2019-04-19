@@ -69,6 +69,8 @@
                 this.scrollToComment(reply)
             })
 
+            bus.$on('comment:edited', this.editComment)
+
         },
 
         methods: {
@@ -114,6 +116,10 @@
                 setTimeout(() => {
                     VueScrollTo.scrollTo(`#comment-${comment.id}`, 500)
                 }, 100)
+            },
+
+            editComment (comment) {
+                _.assign(_.find(this.comments, { id: comment.id }), comment)
             }
         }
     }

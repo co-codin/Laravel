@@ -37,8 +37,12 @@
         },
 
         methods: {
-            patch () {
+            async patch () {
+                let comment = await axios.patch(`/comments/${this.comment.id}`, this.form)
 
+                bus.$emit('comment:edited', comment.data.data)
+
+                this.cancel()
             },
 
             cancel () {
