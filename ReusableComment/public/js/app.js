@@ -1818,6 +1818,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -39002,8 +39005,19 @@ var render = function() {
                 ? [_vm._v("\n                repied\n            ")]
                 : _vm._e(),
               _vm._v(
-                "\n            " + _vm._s(_vm.comment.created_at) + "\n        "
-              )
+                "\n            " +
+                  _vm._s(_vm.comment.created_at) +
+                  "\n            "
+              ),
+              _vm.comment.edited
+                ? _c("span", { attrs: { title: _vm.comment.edited } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.comment.edited) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e()
             ],
             2
           ),

@@ -8,6 +8,9 @@
                     repied
                 </template>
                 {{ comment.created_at }}
+                <span v-if="comment.edited" :title="comment.edited">
+                    {{ comment.edited }}
+                </span>
             </p>
 
             <template v-if="editing">
@@ -24,7 +27,7 @@
                     <a href="#" @click.prevent="reply">Reply</a>
                 </li>
 
-                <li class="list-inline-item" v-if="comment.owner"> 
+                <li class="list-inline-item" v-if="comment.owner">
                     <a href="#" @click.prevent="editing = true">Edit</a>
                 </li>
             </ul>
