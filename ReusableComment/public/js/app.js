@@ -1901,6 +1901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1951,6 +1952,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }(),
     cancel: function cancel() {
       _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('comment:edit-cancelled', this.comment);
+    }
+  },
+  computed: {
+    textareaHeight: function textareaHeight() {
+      return Math.max(Math.floor(this.comment.body.split(/\r*\n/).length / 2), 6);
     }
   }
 });
@@ -39139,7 +39145,11 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
-          attrs: { id: "body", autofocus: "autofocus" },
+          attrs: {
+            id: "body",
+            rows: _vm.textareaHeight,
+            autofocus: "autofocus"
+          },
           domProps: { value: _vm.form.body },
           on: {
             input: function($event) {

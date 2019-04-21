@@ -3,6 +3,7 @@
         <div class="form-group">
             <textarea
                 id="body"
+                :rows="textareaHeight"
                 class="form-control"
                 autofocus="autofocus"
                 v-model="form.body"
@@ -47,6 +48,12 @@
 
             cancel () {
                 bus.$emit('comment:edit-cancelled', this.comment)
+            }
+        },
+
+        computed: {
+            textareaHeight () {
+                return Math.max(Math.floor(this.comment.body.split(/\r*\n/).length / 2), 6)
             }
         }
     }
