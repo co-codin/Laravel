@@ -17,9 +17,7 @@
                 <comment-edit :comment="comment" />
             </template>
             <template v-else>
-                <p>
-                    {{ comment.body }}
-                </p>
+                <div v-html="body" v-highlightjs></div>
             </template>
 
             <ul class="list-inline" v-if="links && user.authenticated && !editing">
@@ -45,6 +43,7 @@
     import Comment from './Comment'
     import CommentEdit from './CommentEdit'
     import bus from '../../bus'
+    import marked from 'marked'
 
     export default {
         name: 'comment',
@@ -81,6 +80,12 @@
         methods: {
             reply () {
                 bus.$emit('comment:reply', this.comment)
+            }
+        },
+
+        computed: {
+            body () {
+                return marked(this.comment.body, { sanitize: true })
             }
         }
     }
