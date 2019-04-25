@@ -1,5 +1,6 @@
 import user from './mixins/user'
 import pluralize from './mixins/pluralize'
+import highlight from './directives/highlight'
 
 require('./bootstrap');
 
