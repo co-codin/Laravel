@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+
+
+                    <add-product-component></add-product-component>
+
+                    <chart-component></chart-component>
+
                 </div>
             </div>
         </div>

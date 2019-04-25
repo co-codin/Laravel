@@ -7,15 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        return response()->json(
-            Product::orderBy('year', 'ASC')->get()
-        );
+    //
+    public function index(){
+        $products = Product::orderBy('year', 'ASC')->get();
+        return response()->json($products);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $product = new Product();
         $product->name = $request->name;
         $product->year = $request->year;
@@ -23,4 +21,7 @@ class ProductController extends Controller
         $product->save();
         return response()->json(['success'=>'The product was created succesfully']);
     }
+
+
+
 }
