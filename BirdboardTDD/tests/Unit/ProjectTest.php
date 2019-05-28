@@ -8,13 +8,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProjectTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    use RefreshDatabase;
+
+    /** @test */
+    public function it_has_a_path()
     {
-        $this->assertTrue(true);
+        $project = factory('App\Project')->create();
+
+        $this->assertEquals("/projects/{$project->id}", $project->path());
     }
 }

@@ -8,7 +8,19 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        $projects = auth()->user()->projects;
 
+        return view('projects.index', compact('projects'));
+    }
+
+    public function show()
+    {
+
+    }
+
+    public function create()
+    {
+        return view('projects.create');
     }
 
     public function store()
@@ -18,6 +30,8 @@ class ProjectController extends Controller
             'description' => 'required'
         ]);
 
-        
+        auth()->user()->projects()->create($attributes);
+
+        return redirect('/projects');
     }
 }
