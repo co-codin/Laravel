@@ -28,13 +28,14 @@ class ManageProjectsTest extends TestCase
 
         $this->actingAs(factory('App\User')->create());
 
+        $this->get('/projects/create')->assertStatus(200);
+
         $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph
         ];
 
-        $this->post('/projects', $attributes)
-             ->assertRedirect('/projects');
+        $this->post('/projects', $attributes)->assertRedirect('/projects');
 
         $this->assertDatabaseHas('projects', $attributes);
 
@@ -51,8 +52,8 @@ class ManageProjectsTest extends TestCase
         $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
 
         $this->get($project->path())
-             ->assertSee($project->title)
-             ->assertSee($project->description);
+            ->assertSee($project->title)
+            ->assertSee($project->description);
     }
 
     /** @test */
