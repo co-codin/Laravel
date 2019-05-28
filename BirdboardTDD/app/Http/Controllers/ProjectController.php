@@ -13,6 +13,11 @@ class ProjectController extends Controller
 
     public function store()
     {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
         
     }
 }
