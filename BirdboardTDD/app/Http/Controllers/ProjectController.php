@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -13,9 +14,13 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects'));
     }
 
-    public function show()
+    public function show(Project $project)
     {
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
 
+        return view('projects.show', compact('project'));
     }
 
     public function create()
