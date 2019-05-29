@@ -19,6 +19,18 @@ class ProjectTasksTest extends TestCase
     }
 
     /** @test */
+    public function only_the_owner_of_a_project_may_add_tasks()
+    {
+        $this->signIn();
+
+        $project = factory('App\Project')->create();
+
+        $this->post($project->path() . '/tasks', ['body' => 'test body']);
+
+        $this->assertDatabaseMissing('tasks', ['body' => 'test body']);
+    }
+
+    /** @test */
     public function a_project_can_have_tasks()
     {
         $this->signIn();
