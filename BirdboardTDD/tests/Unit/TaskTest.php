@@ -2,8 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Project;
-use App\Task;
+use App\{Project, Task};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -25,5 +24,17 @@ class TaskTest extends TestCase
         $task = factory(Task::class)->create();
 
         $this->assertEquals("/projects/{$task->project->id}/tasks/{$task->id}", $task->path());
+    }
+
+    /** @test */
+    function it_can_be_completed()
+    {
+        $task = factory(Task::class)->create();
+
+        $this->assertFalse($task->completed);
+
+        $task->complete();
+
+        $this->assertTrue($task->fresh()->completed);
     }
 }
