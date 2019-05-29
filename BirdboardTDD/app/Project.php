@@ -38,10 +38,10 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-     public function tasks()
-     {
-         return $this->hasMany(Task::class);
-     }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
     /**
      * Add a task to the project.
@@ -49,8 +49,8 @@ class Project extends Model
      * @param  string $body
      * @return \Illuminate\Database\Eloquent\Model
      */
-     public function addTask($body)
-     {
-         return $this->tasks()->create(compact('body'));
-     }
+    public function addTask($body)
+    {
+        return $this->tasks()->create(compact('body'));
+    }
 }
