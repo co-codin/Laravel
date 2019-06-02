@@ -87,7 +87,7 @@ class TriggerActivityTest extends TestCase
         $project = ProjectFactory::withTasks(1)->create();
 
         $project->tasks[0]->delete();
-        
+
         $this->assertCount(3, $project->activity);
     }
 }
