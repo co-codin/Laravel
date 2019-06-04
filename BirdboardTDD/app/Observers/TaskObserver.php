@@ -18,6 +18,17 @@ class TaskObserver
     }
 
     /**
+    * Handle the project "updating" event.
+    *
+    * @param  \App\Task $project
+    * @return void
+    */
+    public function updating(Task $task)
+    {
+        $task->old = $task->getOriginal();
+    }
+
+    /**
      * Handle the task "deleted" event.
      *
      * @param  \App\Task  $task
