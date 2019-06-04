@@ -16,13 +16,6 @@ class Project extends Model
     protected $guarded = [];
 
     /**
-     * The project's old attributes.
-     *
-     * @var array
-     */
-     public $old = [];
-
-    /**
      *  The path to the project.
      *
      * @return string

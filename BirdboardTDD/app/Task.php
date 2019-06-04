@@ -8,8 +8,6 @@ class Task extends Model
 {
     use RecordsActivity;
 
-    public $old = [];
-
     /**
      * Attributes to guard against mass assignment.
      *
@@ -72,14 +70,4 @@ class Task extends Model
     {
         return "/projects/{$this->project->id}/tasks/{$this->id}";
     }
-
-     /**
-     * The activity feed for the task.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-     public function activity()
-     {
-         return $this->morphMany(Activity::class, 'subject')->latest();
-     }
 }
