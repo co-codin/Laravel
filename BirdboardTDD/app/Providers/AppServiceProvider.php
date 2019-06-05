@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\{Project, Task};
 use Illuminate\Support\ServiceProvider;
-use App\Observers\{ProjectObserver, TaskObserver};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,8 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Project::observe(ProjectObserver::class);
-        Task::observe(TaskObserver::class);
+        
     }
 
     /**

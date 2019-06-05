@@ -9,7 +9,7 @@ trait RecordsActivity
      *
      * @var array
      */
-     public $old = [];
+     public $oldAttributes = [];
 
      /**
      * Boot the trait.
@@ -17,8 +17,23 @@ trait RecordsActivity
      public static function bootRecordsActivity()
      {
          static::updating(function ($model) {
-             $model->old = $model->getOriginal();
+             $model->oldAttributes = $model->getOriginal();
          });
+
+         if (isset(static::$recordableEvents)) {
+             $recordableEvents = static::$recordableEvents;
+         } else {
+             $recordableEvents = ['created', 'updated', 'deleted'];
+         }
+
+         foreach ($recordableEvents as $event) {
+             static::$event(function ($model) use ($event) {
+                 if (class_basename($model) !== 'Project') {
+                     $event = "{$event}_" . strtolower(class_basename($model));
+                 }
+                 $model->recordActivity($event);
+             });
+         }
      }
 
     /**
@@ -55,7 +70,7 @@ trait RecordsActivity
     {
         if ($this->wasChanged()) {
             return [
-                'before' => array_except(array_diff($this->old, $this->getAttributes()), 'updated_at'),
+                'before' => array_except(array_diff($this->oldAttributes, $this->getAttributes()), 'updated_at'),
                 'after' => array_except($this->getChanges(), 'updated_at')
             ];
         }

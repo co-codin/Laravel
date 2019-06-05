@@ -31,6 +31,8 @@ class Task extends Model
         'completed' => 'boolean'
     ];
 
+    protected static $recordableEvents = ['created', 'deleted'];
+
     /**
      * Mark the task as complete.
      */
