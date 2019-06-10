@@ -31,16 +31,11 @@ class ManageProjectsTest extends TestCase
 
         $this->get('/projects/create')->assertStatus(200);
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph
-        ];
-
-        $response = $this->post('/projects', $attributes);
-
-        $response->assertRedirect(Project::where($attributes)->first()->path());
-
-        $this->get('/projects')->assertSee($attributes['title']);
+        $this->followingRedirects()
+             ->post('/projects', $attributes = factory(Project::class)->raw())
+             ->assertSee($attributes['title'])
+             ->assertSee($attributes['description'])
+             ->assertSee($attributes['notes']);
     }
 
     /** @test */
