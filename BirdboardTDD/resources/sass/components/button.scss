@@ -5,7 +5,7 @@
     &.is-outlined {
         @apply .bg-card .border .border-accent .text-accent;
     }
-    
+
     .theme-light & {
         box-shadow: 0 2px 7px 0 #b0eaff;
     }
