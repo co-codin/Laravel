@@ -60,6 +60,8 @@
 </template>
 
 <script>
+    import BirdboardForm from './BirdboardForm'
+
     export default {
         data() {
             return {
@@ -77,7 +79,7 @@
 
         methods: {
             addTask() {
-                this.form.tasks.push({ value: '' });
+                this.form.tasks.push({ body: '' });
             },
 
             async submit() {
