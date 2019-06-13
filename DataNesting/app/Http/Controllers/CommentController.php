@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::latest()->get();
+        $comments = Comment::isParent()->latest()->get();
 
         return CommentResource::collection(
             $comments
