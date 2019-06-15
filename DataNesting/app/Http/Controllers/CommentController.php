@@ -10,7 +10,10 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::isParent()->latest()->get();
+        $comments = Comment::with([
+            'user',
+            'children'
+        ])->isParent()->latest()->get();
 
         return CommentResource::collection(
             $comments
