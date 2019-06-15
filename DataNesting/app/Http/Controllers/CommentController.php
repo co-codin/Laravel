@@ -12,7 +12,9 @@ class CommentController extends Controller
     {
         $comments = Comment::with([
             'user',
-            'children'
+            'children',
+            'children.children',
+            'children.children.children' // Concerntrate on frontend
         ])->isParent()->latest()->get();
 
         return CommentResource::collection(
