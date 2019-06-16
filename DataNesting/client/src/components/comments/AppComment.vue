@@ -29,7 +29,7 @@
       </nav>
 
       <AppComment
-        v-for="child in comment.children"
+        v-for="child in children(comment.id)"
         :key="child.id"
         :comment="child"
       />
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
         name: 'AppComment',
@@ -47,6 +47,12 @@
         methods: {
             ...mapActions({
                 deleteComment: 'deleteComment'
+            })
+        },
+
+        computed: {
+            ...mapGetters({
+                children: 'children'
             })
         },
 

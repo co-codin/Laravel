@@ -13,6 +13,10 @@ export default new Vuex.Store({
           return state.comments.filter((c) => {
               return c.parent_id === null
           })
+      },
+
+      children (state) {
+          return parentId => state.comments.filter(c => c.parent_id === parentId)
       }
   },
 
