@@ -12,10 +12,12 @@ class CommentController extends Controller
     {
         $comments = Comment::with(['user', 'children.user'])
                             ->latest()
-                            ->get();
+                            ->paginate(2);
+
+        // $comments->merge($comments->pluck('children')->flatten())  Only one level
 
         return CommentResource::collection(
-            $comments
+            $comments->merge($comments->pluck('children')->flatten())
         );
     }
 
