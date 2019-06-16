@@ -1,5 +1,5 @@
 <template>
-    <article class="media">
+  <article class="media">
     <figure class="media-left">
       <p class="image is-64x64">
         <img src="https://bulma.io/images/placeholders/128x128.png">
@@ -8,9 +8,9 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>user name</strong>
+          <strong>{{ comment.user.name }}</strong>
           <br>
-          <strong>1</strong> comment
+          <strong>{{ comment.id }}</strong> {{ comment.body }}
         </p>
       </div>
 
@@ -28,12 +28,25 @@
         </div>
       </nav>
 
+      <AppComment
+        v-for="child in comment.children"
+        :key="child.id"
+        :comment="child"
+      />
+
     </div>
   </article>
 </template>
 
 <script>
     export default {
-        name: 'AppComment'
+        name: 'AppComment',
+
+        props: {
+            comment: {
+                required: true,
+                type: Object
+            }
+        }
     }
 </script>
