@@ -16,8 +16,12 @@ class CommentController extends Controller
 
         // $comments->merge($comments->pluck('children')->flatten())  Only one level
 
+        $children = Comment::with(['user'])
+                    ->whereIn('base_id', $comments->pluck('id')->toArray())
+                    ->get();
+
         return CommentResource::collection(
-            $comments->merge($comments->pluck('children')->flatten())
+            $comments->merge($children)
         );
     }
 
