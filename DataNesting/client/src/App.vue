@@ -1,16 +1,23 @@
 <template>
-  <div class="app container">
-      App
-  </div>
+    <div class="app container">
+        <AppComments
+          :comments="comments"
+        />
+    </div>
 </template>
 
 <script>
+    import AppComments from '@/components/comments/AppComments'
 
-export default {
-  components: {
+    export default {
+        components: {
+            AppComments
+        },
 
-  }
-}
+        mounted () {
+            
+        }
+    }
 </script>
 
 <style lang="scss">
