@@ -8,14 +8,27 @@
 
 <script>
     import AppComments from '@/components/comments/AppComments'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
         components: {
             AppComments
         },
 
+        methods: {
+            ...mapActions({
+                getComments: 'getComments'
+            })
+        },
+
+        computed: {
+            ...mapGetters({
+                comments: 'comments'
+            })
+        },
+
         mounted () {
-            
+            this.getComments()
         }
     }
 </script>
