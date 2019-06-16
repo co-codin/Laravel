@@ -22,7 +22,7 @@
           <a class="level-item">
             Edit
           </a>
-          <a class="level-item">
+          <a class="level-item" @click.prevent="deleteComment(comment)">
             Delete
           </a>
         </div>
@@ -39,8 +39,16 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
     export default {
         name: 'AppComment',
+
+        methods: {
+            ...mapActions({
+                deleteComment: 'deleteComment'
+            })
+        },
 
         props: {
             comment: {

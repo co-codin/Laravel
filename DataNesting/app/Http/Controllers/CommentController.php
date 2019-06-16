@@ -21,4 +21,9 @@ class CommentController extends Controller
             $comments
         );
     }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+    }
 }
