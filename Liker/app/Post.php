@@ -18,4 +18,14 @@ class Post extends Model
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function likers()
+    {
+        return $this->hasManyThrough(
+            User::class, Like::class, 'likeable_id', 'id',
+            'id', "user_id"
+        )
+        ->where('likeable_type', Post::class)
+        ->groupBy('likes.user_id', 'users.id', 'likes.likeable_id');
+    }
 }
