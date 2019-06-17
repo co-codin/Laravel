@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +41,10 @@ class User extends Authenticatable
     public function avatar()
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->email);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
