@@ -18,11 +18,15 @@
 
     export default {
         methods: {
-            async getPosts () {
-                let posts = await axios.get('/api/posts')
+            ...mapActions({
+                getPosts: 'getPosts'
+            })
+        },
 
-                this.posts = posts.data.data
-            }
+        computed: {
+            ...mapGetters({
+                posts: 'posts'
+            })
         },
 
         mounted () {
