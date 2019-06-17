@@ -14,14 +14,9 @@
 
 <script>
     import axios from 'axios'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
-        data () {
-            return {
-                posts: []
-            }
-        },
-
         methods: {
             async getPosts () {
                 let posts = await axios.get('/api/posts')
