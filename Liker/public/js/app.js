@@ -2039,6 +2039,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -2057,6 +2058,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: {
@@ -2065,7 +2067,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    pluralize: pluralize__WEBPACK_IMPORTED_MODULE_0___default.a
+    pluralize: pluralize__WEBPACK_IMPORTED_MODULE_0___default.a,
+    like: function like() {
+      console.log('test');
+    }
   }
 });
 
@@ -39457,7 +39462,19 @@ var render = function() {
     _c("ul", { staticClass: "list-inline mb-0" }, [
       !_vm.post.user.data.owner
         ? _c("li", { staticClass: "list-inline-item" }, [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Like it")])
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.like($event)
+                  }
+                }
+              },
+              [_vm._v("Like it")]
+            )
           ])
         : _vm._e()
     ])

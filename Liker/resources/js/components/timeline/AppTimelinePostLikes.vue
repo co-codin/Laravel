@@ -9,7 +9,7 @@
 
         <ul class="list-inline mb-0">
             <li class="list-inline-item" v-if="!post.user.data.owner">
-                <a href="#">Like it</a>
+                <a href="#" @click.prevent="like">Like it</a>
             </li>
         </ul>
     </div>
@@ -17,6 +17,7 @@
 
 <script>
     import pluralize from 'pluralize'
+    import { mapActions } from 'vuex'
 
     export default {
         props: {
@@ -27,7 +28,11 @@
         },
 
         methods: {
-            pluralize
+            pluralize,
+
+            like () {
+                console.log('test');
+            }
         }
     }
 </script>
