@@ -30,8 +30,12 @@
         methods: {
             pluralize,
 
+            ...mapActions({
+                likePost: 'likePost'
+            }),
+
             like () {
-                console.log('test');
+                this.likePost(this.post.id)
             }
         }
     }
