@@ -32,6 +32,12 @@ class PostUserTransformer extends TransformerAbstract
 
     public function includeLiked(Post $post)
     {
+        return $this->primitive($post, function ($post) {
+            if (!$user = auth()->check()) {
+                return false;
+            }
 
+            return $post->likes->contains($user);
+        });
     }
 }

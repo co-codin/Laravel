@@ -2053,6 +2053,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -39433,31 +39436,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("span", { staticClass: "text-secondary" }, [
-      _vm._v(
-        "\n        " +
-          _vm._s(_vm.pluralize("like", _vm.post.likes, true)) +
-          " from " +
-          _vm._s(_vm.pluralize("person", _vm.post.likers.data.length, true)) +
-          "\n    "
-      )
-    ]),
+    _c(
+      "span",
+      { staticClass: "text-secondary" },
+      [
+        _vm._v(
+          "\n        " +
+            _vm._s(_vm.pluralize("like", _vm.post.likes, true)) +
+            " from " +
+            _vm._s(_vm.pluralize("person", _vm.post.likers.data.length, true)) +
+            "\n        "
+        ),
+        _vm.post.user.data.liked
+          ? [_vm._v("\n            (including you)\n        ")]
+          : _vm._e()
+      ],
+      2
+    ),
     _vm._v(" "),
-    _vm._m(0)
+    _c("ul", { staticClass: "list-inline mb-0" }, [
+      !_vm.post.user.data.owner
+        ? _c("li", { staticClass: "list-inline-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Like it")])
+          ])
+        : _vm._e()
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-inline mb-0" }, [
-      _c("li", { staticClass: "list-inline-item" }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Like it")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
