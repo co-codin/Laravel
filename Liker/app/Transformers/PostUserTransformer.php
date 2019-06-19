@@ -43,10 +43,10 @@ class PostUserTransformer extends TransformerAbstract
         });
     }
 
-    public function includeLikesRemaining()
+    public function includeLikesRemaining(Post $post)
     {
         return $this->primitive($post, function ($post) {
-            if (!$user = auth()->check()) {
+            if (!$user = auth()->user()) {
                 return false;
             }
 

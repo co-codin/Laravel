@@ -8,7 +8,7 @@
         </span>
 
         <ul class="list-inline mb-0">
-            <li class="list-inline-item" v-if="!post.user.data.owner">
+            <li class="list-inline-item" v-if="canLike">
                 <a href="#" @click.prevent="like">Like it</a>
             </li>
         </ul>
@@ -24,6 +24,20 @@
             post: {
                 required: true,
                 type: Object
+            }
+        },
+
+        computed: {
+            canLike () {
+                if (this.post.user.data.owner) {
+                    return false
+                }
+
+                if (this.post.user.data.likes_remaining <= 0) {
+                    return false
+                }
+
+                return true
             }
         },
 
