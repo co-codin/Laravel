@@ -12,5 +12,15 @@ class PostPolicy
     public function like(User $user, Post $post)
     {
         return $user->id !== $post->user_id;
+        
+        // if ($user->id !== $post->user_id) {
+        //     return false;
+        // }
+        //
+        // if ($post->maxLikesReachedFor($user)) {
+        //     return false;
+        // }
+        //
+        // return true;
     }
 }
