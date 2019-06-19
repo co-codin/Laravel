@@ -8,7 +8,9 @@ use League\Fractal\TransformerAbstract;
 class PostUserTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-        'owner', 'liked'
+        'owner',
+        'liked',
+        'likes_remaining'
     ];
 
     /**
@@ -38,6 +40,17 @@ class PostUserTransformer extends TransformerAbstract
             }
 
             return $post->likes->contains($user);
+        });
+    }
+
+    public function includeLikesRemaining()
+    {
+        return $this->primitive($post, function ($post) {
+            if (!$user = auth()->check()) {
+                return false;
+            }
+
+            return $post->likesRemainingFor($user);
         });
     }
 }

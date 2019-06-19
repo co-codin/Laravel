@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    const MAX_LIKES = 5;
+
     protected $fillable = ['body'];
+
+    public function likesRemainingFor(User $user)
+    {
+        return self::MAX_LIKES - $this->likes->where('user_id', $user->id)->count();
+    }
 
     public function user()
     {
