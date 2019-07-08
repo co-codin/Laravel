@@ -24,6 +24,14 @@ class PostController extends Controller
                ->toArray();
     }
 
+    public function show(Post $post)
+    {
+        return fractal()
+               ->item($post)
+               ->transformWith(new PostTransformer())
+               ->toArray();
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -32,7 +40,7 @@ class PostController extends Controller
 
         $post = $request->user()->posts()->create($request->only('body'));
 
-        event(new PostCreated($post));
+        broadcast(new PostCreated($post))->toOthers();
 
         return fractal()
                ->item($post)

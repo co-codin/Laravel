@@ -63262,7 +63262,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 
 Echo.channel('posts').listen('PostCreated', function (e) {
-  console.log(e);
+  _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('getPost', e.post.id);
 });
 
 /***/ }),
@@ -63353,10 +63353,10 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
       return getPosts;
     }(),
-    createPost: function () {
-      var _createPost = _asyncToGenerator(
+    getPost: function () {
+      var _getPost = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, data) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, id) {
         var commit, post;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -63364,7 +63364,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
               case 0:
                 commit = _ref2.commit;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/posts', data);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/posts/".concat(id));
 
               case 3:
                 post = _context2.sent;
@@ -63378,16 +63378,16 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         }, _callee2);
       }));
 
-      function createPost(_x2, _x3) {
-        return _createPost.apply(this, arguments);
+      function getPost(_x2, _x3) {
+        return _getPost.apply(this, arguments);
       }
 
-      return createPost;
+      return getPost;
     }(),
-    likePost: function () {
-      var _likePost = _asyncToGenerator(
+    createPost: function () {
+      var _createPost = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, data) {
         var commit, post;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -63395,11 +63395,11 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
               case 0:
                 commit = _ref3.commit;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/posts/".concat(id, "/likes"));
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/posts', data);
 
               case 3:
                 post = _context3.sent;
-                commit('UPDATE_POST', post.data.data);
+                commit('PREPEND_POSTS', post.data.data);
 
               case 5:
               case "end":
@@ -63409,7 +63409,38 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         }, _callee3);
       }));
 
-      function likePost(_x4, _x5) {
+      function createPost(_x4, _x5) {
+        return _createPost.apply(this, arguments);
+      }
+
+      return createPost;
+    }(),
+    likePost: function () {
+      var _likePost = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, id) {
+        var commit, post;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit = _ref4.commit;
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/posts/".concat(id, "/likes"));
+
+              case 3:
+                post = _context4.sent;
+                commit('UPDATE_POST', post.data.data);
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function likePost(_x6, _x7) {
         return _likePost.apply(this, arguments);
       }
 
