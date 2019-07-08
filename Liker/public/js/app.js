@@ -63254,8 +63254,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./resources/js/echo.js ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 
 Echo.channel('posts').listen('PostCreated', function (e) {
   console.log(e);
