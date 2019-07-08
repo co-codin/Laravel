@@ -63263,6 +63263,8 @@ __webpack_require__.r(__webpack_exports__);
 
 Echo.channel('posts').listen('PostCreated', function (e) {
   _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('getPost', e.post.id);
+}).listen('PostLiked', function (e) {
+  _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('refreshPost', e.post.id);
 });
 
 /***/ }),
@@ -63384,10 +63386,10 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
       return getPost;
     }(),
-    createPost: function () {
-      var _createPost = _asyncToGenerator(
+    refreshPost: function () {
+      var _refreshPost = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, data) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id) {
         var commit, post;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -63395,11 +63397,11 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
               case 0:
                 commit = _ref3.commit;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/posts', data);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/posts/".concat(id));
 
               case 3:
                 post = _context3.sent;
-                commit('PREPEND_POSTS', post.data.data);
+                commit('UPDATE_POST', post.data.data);
 
               case 5:
               case "end":
@@ -63409,16 +63411,16 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         }, _callee3);
       }));
 
-      function createPost(_x4, _x5) {
-        return _createPost.apply(this, arguments);
+      function refreshPost(_x4, _x5) {
+        return _refreshPost.apply(this, arguments);
       }
 
-      return createPost;
+      return refreshPost;
     }(),
-    likePost: function () {
-      var _likePost = _asyncToGenerator(
+    createPost: function () {
+      var _createPost = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, id) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, data) {
         var commit, post;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
@@ -63426,11 +63428,11 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
               case 0:
                 commit = _ref4.commit;
                 _context4.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/posts/".concat(id, "/likes"));
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/posts', data);
 
               case 3:
                 post = _context4.sent;
-                commit('UPDATE_POST', post.data.data);
+                commit('PREPEND_POSTS', post.data.data);
 
               case 5:
               case "end":
@@ -63440,7 +63442,38 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         }, _callee4);
       }));
 
-      function likePost(_x6, _x7) {
+      function createPost(_x6, _x7) {
+        return _createPost.apply(this, arguments);
+      }
+
+      return createPost;
+    }(),
+    likePost: function () {
+      var _likePost = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref5, id) {
+        var commit, post;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                commit = _ref5.commit;
+                _context5.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/posts/".concat(id, "/likes"));
+
+              case 3:
+                post = _context5.sent;
+                commit('UPDATE_POST', post.data.data);
+
+              case 5:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function likePost(_x8, _x9) {
         return _likePost.apply(this, arguments);
       }
 
