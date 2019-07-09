@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teams;
 
+use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,8 +13,21 @@ class TeamController extends Controller
         return view('teams.index');
     }
 
-    public function show()
+    public function show(Team $team)
     {
         return view('teams.show');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $user = $request->user();
+
+        $user->teams()->create($request->only('name'));
+
+        return redirect()->route('teams.index');
     }
 }
