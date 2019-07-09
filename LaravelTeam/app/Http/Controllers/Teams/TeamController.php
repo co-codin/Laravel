@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('teams.index');
+        $teams = $request->user()->teams;
+
+        return view('teams.index', compact('teams'));
     }
 
     public function show(Team $team)

@@ -8,15 +8,18 @@
                 <div class="card-header">Teams</div>
 
                 <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="#">
-                                Team One
-                            </a>
+                    @if ($teams->count())
+                        <ul class="list-group">
+                            @foreach($teams as $team)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="{{ route('teams.show', $team) }}">
+                                        {{ $team->name }}
+                                    </a>
 
-                            <span class="badge badge-primary badge-pill">Admin</span>
-                        </li>
-                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
 
