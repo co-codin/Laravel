@@ -17,7 +17,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $roles = Roles::$roles;
 
         foreach ($roles as $role => $data) {
+            $role = Role::firstOrCreate(['name' => $role]);
 
+            foreach ($data['permissions'] as $permission) {
+                Permission::firstOrCreate(['name' => $permission]);
+
+                $role->attachPermission($permission);
+            }
         }
     }
 }
