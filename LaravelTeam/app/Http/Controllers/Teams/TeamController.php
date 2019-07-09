@@ -11,4 +11,9 @@ class TeamController extends Controller
     {
         return view('teams.index');
     }
+
+    public function show()
+    {
+        return view('teams.show');
+    }
 }
