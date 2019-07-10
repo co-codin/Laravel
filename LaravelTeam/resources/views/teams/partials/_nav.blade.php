@@ -18,7 +18,7 @@
 <ul class="list-group mb-4">
     @permission('delete team', $team->id)
         <li class="list-group-item">
-            <a href="">Delete team</a>
+            <a href="{{ route('teams.delete', $team) }}">Delete team</a>
         </li>
     @endpermission
 </ul>
