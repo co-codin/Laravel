@@ -44,6 +44,29 @@
                     </table>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">Add a user</div>
+
+                <div class="card-body">
+                    <form action="{{ route('teams.users.store', $team) }}" method="post">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email">
+
+                            @if ($errors->has('email'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add user</button>
+                    </form>
+                </div>
+            </div>
         </div>
   </div>
 @endsection
