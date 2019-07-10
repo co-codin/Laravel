@@ -9,6 +9,12 @@ use App\Http\Controllers\Controller;
 
 class TeamUserController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        $this->middleware(['permission:add users,' . $request->team])
+             ->only('store');
+    }
+
     public function index(Team $team)
     {
         return view('teams.users.index', compact('team'));

@@ -9,6 +9,12 @@ use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        $this->middleware(['permission:delete team,' . $request->team])
+             ->only(['delete', 'destroy']);
+    }
+
     public function index(Request $request)
     {
         $teams = $request->user()->teams;
