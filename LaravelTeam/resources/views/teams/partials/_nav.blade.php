@@ -1,16 +1,24 @@
 <ul class="list-group mb-4">
     <li class="list-group-item">
-        <a href="">Dashboard</a>
+        <a href="{{ route('teams.show', $team) }}">Dashboard</a>
     </li>
 
     <li class="list-group-item">
-        <a href="">Users</a>
+        <a href="{{ route('teams.users.index', $team) }}">Users</a>
     </li>
+
+    @permission('manage team subscription', $team->id)
+        <li class="list-group-item">
+            <a href="">Subscription</a>
+        </li>
+    @endpermission
 </ul>
 
 
 <ul class="list-group mb-4">
-    <li class="list-group-item">
-        <a href="">Delete team</a>
-    </li>
+    @permission('delete team', $team->id)
+        <li class="list-group-item">
+            <a href="">Delete team</a>
+        </li>
+    @endpermission
 </ul>
