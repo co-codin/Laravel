@@ -16,6 +16,9 @@
                                         {{ $team->name }}
                                     </a>
 
+                                    @if ($team->ownedByCurrentUser())
+                                        <span class="badge badge-primary badge-pill">admin</span>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
