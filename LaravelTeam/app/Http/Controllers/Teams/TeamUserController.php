@@ -11,6 +11,8 @@ class TeamUserController extends Controller
 {
     public function __construct(Request $request)
     {
+        $this->middleware(['in_team:' . $request->team]);
+
         $this->middleware(['permission:add users,' . $request->team])
              ->only('store');
     }
