@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
 });
 
 Auth::routes();
@@ -15,4 +15,8 @@ Route::get('teams/{team}/delete', 'Teams\TeamController@delete')->name('teams.de
 Route::resource('teams/{team}/users', 'Teams\TeamUserController')->names([
     'index' => 'teams.users.index',
     'store' => 'teams.users.store'
+]);
+
+Route::resource('teams/{team}/subscriptions', 'Teams\TeamSubscriptionController')->names([
+    'index' => 'teams.subscriptions.index'
 ]);
