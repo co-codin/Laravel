@@ -10,6 +10,8 @@ class TeamSubscriptionController extends Controller
 {
     public function index(Team $team)
     {
-        return view('teams.subscriptions.index', compact('team'));
+        $plans = Plan::teams()->get();
+
+        return view('teams.subscriptions.index', compact('team', 'plans'));
     }
 }
