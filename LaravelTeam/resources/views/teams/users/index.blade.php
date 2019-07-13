@@ -52,22 +52,32 @@
                     <div class="card-header">Add a user</div>
 
                     <div class="card-body">
-                        <form action="{{ route('teams.users.store', $team) }}" method="post">
-                            @csrf
+                        @if ($team->hasReachedMemberLimit())
+                            <p class="mb-0">
+                                <a href="{{ route('teams.subscriptions.index', $team) }}">Upgrade</a> to add more members.
+                            </p>
+                        @elseif (!$team->hasReachedMemberLimit())
+                            <p class="mb-0">
+                                Please <a href="{{ route('teams.subscriptions.index', $team) }}">subscribe</a> to add users
+                            </p>
+                        @else
+                            <form action="{{ route('teams.users.store', $team) }}" method="post">
+                                @csrf
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email">
 
-                                @if ($errors->has('email'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                @endif
-                            </div>
+                                    @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
 
-                            <button type="submit" class="btn btn-primary">Add user</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Add user</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             @endpermission

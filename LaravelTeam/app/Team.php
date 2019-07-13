@@ -15,6 +15,15 @@ class Team extends LaratrustTeam
         'name'
     ];
 
+    public function hasReachedMemberLimit()
+    {
+        if (!$this->hasSubscription()) {
+            return true;
+        }
+
+        return $this->users->count() >= $this->plan->teams_limit;
+    }
+
     public function ownedBy(User $user)
     {
         return $this->users->find($user)->hasRole('team_admin');
