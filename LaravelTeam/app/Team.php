@@ -5,19 +5,15 @@ namespace App;
 use Laravel\Cashier\Billable;
 use App\{User, TeamSubscription};
 use Laratrust\Models\LaratrustTeam;
+use App\Subscriptions\Traits\HasSubscriptions;
 
 class Team extends LaratrustTeam
 {
-    use Billable;
+    use Billable, HasSubscriptions;
 
     protected $fillable = [
         'name'
     ];
-
-    public function hasSubscription()
-    {
-        return false;
-    }
 
     public function ownedBy(User $user)
     {
