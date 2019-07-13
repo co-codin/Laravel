@@ -1870,7 +1870,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      token: null
+    };
+  },
   mounted: function mounted() {
+    var _this = this;
+
     var stripe = Stripe('pk_test_o2qLuru9np9gu9tch9Vn3MtJ');
     var elements = stripe.elements();
     var card = elements.create('card', {
@@ -1883,6 +1890,20 @@ __webpack_require__.r(__webpack_exports__);
     });
     card.addEventListener('change', function (event) {
       var displayError = document.getElementById('card-errors');
+
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        if (event.complete) {
+          stripe.createToken(card).then(function (result) {
+            if (result.error) {
+              displayError.textContent = result.error.message;
+            } else {
+              _this.token = result.token.id;
+            }
+          });
+        }
+      }
     });
     card.mount('#card-element');
   }

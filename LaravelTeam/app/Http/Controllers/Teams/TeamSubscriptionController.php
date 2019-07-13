@@ -14,4 +14,9 @@ class TeamSubscriptionController extends Controller
 
         return view('teams.subscriptions.index', compact('team', 'plans'));
     }
+
+    public function store(Request $request, Team $team)
+    {
+        dd($request->token);
+    }
 }

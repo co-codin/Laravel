@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="#" method="post">
+                        <form action="{{ route('teams.subscriptions.store', $team) }}" method="post">
                             @csrf
 
                             <div class="form-group">

@@ -9,6 +9,12 @@
 
 <script>
     export default {
+        data () {
+            return {
+                token: null
+            }
+        },
+        
         mounted () {
             let stripe = Stripe('pk_test_o2qLuru9np9gu9tch9Vn3MtJ')
             let elements = stripe.elements()
@@ -25,7 +31,19 @@
             card.addEventListener('change', (event) => {
                 let displayError = document.getElementById('card-errors')
 
-                
+                if (event.error) {
+                    displayError.textContent = event.error.message
+                } else {
+                    if (event.complete) {
+                        stripe.createToken(card).then((result) => {
+                            if (result.error) {
+                                displayError.textContent = result.error.message
+                            } else {
+                                this.token = result.token.id
+                            }
+                        })
+                    }
+                }
             })
 
             card.mount('#card-element')

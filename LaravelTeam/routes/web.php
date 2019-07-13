@@ -18,5 +18,6 @@ Route::resource('teams/{team}/users', 'Teams\TeamUserController')->names([
 ]);
 
 Route::resource('teams/{team}/subscriptions', 'Teams\TeamSubscriptionController')->names([
-    'index' => 'teams.subscriptions.index'
+    'index' => 'teams.subscriptions.index',
+    'store' => 'teams.subscriptions.store'
 ]);
