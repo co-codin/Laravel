@@ -1870,8 +1870,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['classes']
+  props: ['classes'],
+  data: function data() {
+    return {
+      isOpen: false
+    };
+  },
+  methods: {
+    closeIfClickedOutside: function closeIfClickedOutside(event) {}
+  }
 });
 
 /***/ }),
@@ -37823,14 +37841,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "dropdown relative" }, [
-    _c(
-      "div",
-      { staticClass: "dropdown-trigger", attrs: { "aria-haspopup": "true" } },
-      [_vm._t("trigger")],
-      2
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "dropdown relative" },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-trigger",
+          attrs: { "aria-haspopup": "true", "aria-expanded": _vm.isOpen },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.isOpen = !_vm.isOpen
+            }
+          }
+        },
+        [_vm._t("trigger")],
+        2
+      ),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "pop-out-quick" } }, [
+        _c(
+          "ul",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isOpen,
+                expression: "isOpen"
+              }
+            ],
+            staticClass:
+              "dropdown-menu absolute bg-black mt-2 py-2 rounded shadow text-white z-10"
+          },
+          [_vm._t("default")],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
