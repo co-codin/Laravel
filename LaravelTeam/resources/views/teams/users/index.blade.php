@@ -38,7 +38,19 @@
                                         {{ $user->pivot->created_at }}
                                     </td>
                                     <td>
-                                        Menu
+                                        <div class="d-flex">
+                                            <div class="dropdown mr-1">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions</a>
+
+                                                <div class="dropdown-menu">
+                                                    @permission('delete users')
+                                                        <a href="{{ route('teams.users.delete', [$team, $user]) }}" class="dropdown-item">
+                                                            Delete
+                                                        </a>
+                                                    @endpermission
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

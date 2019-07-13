@@ -36,4 +36,14 @@ class TeamUserController extends Controller
 
         return back();
     }
+
+    public function delete(Team $team, User $user)
+    {
+        return view('teams.users.delete', compact('team', 'user'));
+    }
+
+    public function destroy()
+    {
+
+    }
 }

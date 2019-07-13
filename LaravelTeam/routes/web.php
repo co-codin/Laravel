@@ -17,6 +17,9 @@ Route::resource('teams/{team}/users', 'Teams\TeamUserController')->names([
     'store' => 'teams.users.store'
 ]);
 
+Route::get('teams/{team}/users/{user}/delete', 'Teams\TeamUserController@delete')->name('teams.users.delete');
+
+
 Route::resource('teams/{team}/subscriptions', 'Teams\TeamSubscriptionController')->names([
     'index' => 'teams.subscriptions.index',
     'store' => 'teams.subscriptions.store'
