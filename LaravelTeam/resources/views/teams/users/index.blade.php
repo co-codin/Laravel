@@ -12,6 +12,8 @@
                 </div>
 
                 <div class="card-body">
+                    @include('teams.subscriptions.partials._usage')
+
                     <table class="table mb-0">
                         <thead>
                             <tr>
