@@ -11,6 +11,7 @@
         <transition name="pop-out-quick">
             <ul v-show="isOpen"
                 class="dropdown-menu absolute bg-black mt-2 py-2 rounded shadow text-white z-10"
+                :class="classes"
             >
                 <slot></slot>
             </ul>

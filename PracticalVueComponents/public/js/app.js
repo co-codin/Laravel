@@ -1880,6 +1880,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['classes'],
   data: function data() {
@@ -37886,7 +37887,8 @@ var render = function() {
               }
             ],
             staticClass:
-              "dropdown-menu absolute bg-black mt-2 py-2 rounded shadow text-white z-10"
+              "dropdown-menu absolute bg-black mt-2 py-2 rounded shadow text-white z-10",
+            class: _vm.classes
           },
           [_vm._t("default")],
           2
