@@ -47,6 +47,17 @@
                         </form>
                     </div>
                 </div>
+            @else
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Team subscription
+                    </div>
+
+                    <div class="card-body">
+                        {{ $team->plans()->get() }}
+                        You're on the x plan (x users)
+                    </div>
+                </div>
             @endif
         </div>
   </div>

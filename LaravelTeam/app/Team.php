@@ -3,8 +3,8 @@
 namespace App;
 
 use Laravel\Cashier\Billable;
-use App\{User, TeamSubscription};
 use Laratrust\Models\LaratrustTeam;
+use App\{User, TeamSubscription, Plan};
 use App\Subscriptions\Traits\HasSubscriptions;
 
 class Team extends LaratrustTeam
@@ -25,6 +25,11 @@ class Team extends LaratrustTeam
         return $this->ownedBy(auth()->user());
     }
 
+    public function plan()
+    {
+        
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class)
@@ -35,5 +40,11 @@ class Team extends LaratrustTeam
     {
         return $this->hasMany(TeamSubscription::class, $this->getForeignKey())
             ->orderBy('created_at', 'desc');
+    }
+
+    public function plans()
+    {
+        return $this->hasManyThrough(Plan::class, TeamSubscription::class, 'team_id', 'provider_id', 'id', 'stripe_plan')
+                    ->orderBy('team_subscriptions.created_at', 'desc');
     }
 }
