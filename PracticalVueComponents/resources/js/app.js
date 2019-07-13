@@ -1,4 +1,5 @@
 import ScrollLink from './components/ScrollLink';
+import Dropdown from './components/Dropdown';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -21,6 +22,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('scroll-link', ScrollLink);
+Vue.component('dropdown', Dropdown);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
