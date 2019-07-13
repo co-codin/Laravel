@@ -25,9 +25,9 @@ class Team extends LaratrustTeam
         return $this->ownedBy(auth()->user());
     }
 
-    public function plan()
+    public function getPlanAttribute()
     {
-        
+        return $this->plans->first();
     }
 
     public function users()

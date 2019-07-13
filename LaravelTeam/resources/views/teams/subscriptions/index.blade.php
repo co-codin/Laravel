@@ -54,8 +54,7 @@
                     </div>
 
                     <div class="card-body">
-                        {{ $team->plans()->get() }}
-                        You're on the x plan (x users)
+                        You're on the <strong>{{ $team->plan->name }}</strong> plan (<strong>{{ $team->plan->teams_limit }}</strong> users)
                     </div>
                 </div>
             @endif
