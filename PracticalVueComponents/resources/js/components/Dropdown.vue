@@ -28,9 +28,23 @@
             };
         },
 
+        watch: {
+            isOpen (isOpen) {
+                if (isOpen) {
+                    document.addEventListener(
+                        'click',
+                        this.closeIfClickedOutside
+                    );
+                }
+            }
+        },
+
         methods: {
             closeIfClickedOutside (event) {
-
+                if (! event.target.closest('.dropdown')) {
+                    this.isOpen = false;
+                    document.removeEventListener('click', this.closeIfClickedOutside);
+                }
             }
         }
     }

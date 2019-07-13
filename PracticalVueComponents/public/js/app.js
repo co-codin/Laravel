@@ -1887,8 +1887,20 @@ __webpack_require__.r(__webpack_exports__);
       isOpen: false
     };
   },
+  watch: {
+    isOpen: function isOpen(_isOpen) {
+      if (_isOpen) {
+        document.addEventListener('click', this.closeIfClickedOutside);
+      }
+    }
+  },
   methods: {
-    closeIfClickedOutside: function closeIfClickedOutside(event) {}
+    closeIfClickedOutside: function closeIfClickedOutside(event) {
+      if (!event.target.closest('.dropdown')) {
+        this.isOpen = false;
+        document.removeEventListener('click', this.closeIfClickedOutside);
+      }
+    }
   }
 });
 
