@@ -2,11 +2,14 @@
 
 namespace App;
 
-use App\User;
+use Laravel\Cashier\Billable;
+use App\{User, TeamSubscription};
 use Laratrust\Models\LaratrustTeam;
 
 class Team extends LaratrustTeam
 {
+    use Billable;
+
     protected $fillable = [
         'name'
     ];
@@ -30,5 +33,11 @@ class Team extends LaratrustTeam
     {
         return $this->belongsToMany(User::class)
                     ->withTimestamps();
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(TeamSubscription::class, $this->getForeignKey())
+            ->orderBy('created_at', 'desc');
     }
 }
