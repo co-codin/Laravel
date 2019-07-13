@@ -42,8 +42,16 @@ class TeamUserController extends Controller
         return view('teams.users.delete', compact('team', 'user'));
     }
 
-    public function destroy()
+    public function destroy(Team $team, User $user)
     {
+        if (!$team->users->contains($user)) {
+            return back();
+        }
 
+        $team->users()->detach($user);
+
+        $user->detachRoles([], $team->id);
+
+        return redirect()->route('teams.users.index', $team);
     }
 }

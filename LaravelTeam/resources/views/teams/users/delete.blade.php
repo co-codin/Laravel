@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <p>Are you sure you'd like to remove <strong>{{ $user->name }}</strong> from <strong>{{ $team->name }}</strong>?</p>
 
-                    <form action="" method="post">
+                    <form action="{{ route('teams.users.destroy', [$team, $user]) }}" method="post">
                         @csrf
                         @method('DELETE')
 
