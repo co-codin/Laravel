@@ -3,7 +3,8 @@
 $examples = [
     'smooth-scroll',
     'context-menu',
-    'conditional-visibility'
+    'conditional-visibility',
+    'modal'
 ];
 
 collect($examples)->each(function ($uri) {
