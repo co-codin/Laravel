@@ -21,9 +21,11 @@
                 class="text-blue-500"
             >New Post</a>
 
-            <button
-                class="bg-blue-500 hover:bg-blue-600 rounded-full w-24 h-24 text-white text-4xl fixed z-10 right-0 bottom-0 mr-4 mb-4"
-            >+</button>
+            <visible when-hidden="#new-post-link">
+                <button
+                    class="bg-blue-500 hover:bg-blue-600 rounded-full w-24 h-24 text-white text-4xl fixed z-10 right-0 bottom-0 mr-4 mb-4"
+                >+</button>
+            </visible>
         </div>
     </div>
 
