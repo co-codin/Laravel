@@ -15,14 +15,20 @@ class RegisterControllerStep2 extends Controller
         if ($step->notCompleted(1)) {
             return redirect()->route('auth.register.1.index');
         }
-        
+
         return view('auth.register.2');
     }
 
-    public function store(Request $request)
+    public function store(Steps $steps, Request $request)
     {
         $this->validate($request, [
-
+            'name' => 'required'
         ]);
+
+        $steps->step('auth.register', 2)
+              ->store($request->only('name'))
+              ->complete();
+              
+        return redirect()->route('auth.register.3.index');
     }
 }

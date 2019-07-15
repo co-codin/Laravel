@@ -49,6 +49,21 @@ class Steps
         return false;
     }
 
+    public function data()
+    {
+        return collect($this->storage->get($this->key()))
+            ->pluck('data')
+            ->flatten()
+            ->toArray();
+    }
+
+    public function clearAll()
+    {
+        $this->storage->forget($this->key());
+
+        return $this;
+    }
+
     public function __get($property)
     {
         return $this->storage->get("multistep.{$this->name}.{$this->step}.data.{$property}");
