@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class RegisterControllerStep3 extends Controller
 {
-    //
+    public function index()
+    {
+        return view('auth.register.3');
+    }
 }
