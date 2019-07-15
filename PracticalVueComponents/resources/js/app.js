@@ -1,6 +1,7 @@
 import ScrollLink from './components/ScrollLink';
 import Dropdown from './components/Dropdown';
 import Visible from './components/Visible';
+import Modal from './plugins/modal/ModalPlugin';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -10,6 +11,8 @@ import Visible from './components/Visible';
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+Vue.use(Modal);
 
 /**
  * The following block of code may be used to automatically register your
