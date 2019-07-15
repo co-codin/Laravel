@@ -11,4 +11,11 @@ class RegisterControllerStep2 extends Controller
     {
         return view('auth.register.2');
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+
+        ]);
+    }
 }
