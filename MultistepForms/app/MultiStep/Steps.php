@@ -26,6 +26,20 @@ class Steps
 
     public function store($data)
     {
+        $this->storage->put($this->key() . ".{$this->step}.data", $data);
 
+        return $this;
+    }
+
+    public function complete()
+    {
+        $this->storage->put($this->key() . ".{$this->step}.complete", true);
+
+        return $this;
+    }
+
+    protected function key()
+    {
+        return "multistep.{$this->name}";
     }
 }
