@@ -3,6 +3,7 @@
 namespace App\MultiStep\Routing;
 
 use Illuminate\Support\Facades\Route;
+use App\MultiStep\Controller\MultiStepRedirectController;
 
 class PendingMultiStepRegistration
 {
@@ -36,6 +37,8 @@ class PendingMultiStepRegistration
 
     public function __destruct()
     {
+        Route::get($this->uri, '\\' . MultiStepRedirectController::class);
+
         collect()->times($this->steps, function ($step) {
             Route::group([
                 'prefix' => $this->uri
