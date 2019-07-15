@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 
 class RegisterControllerStep1 extends Controller
 {
-    public function index()
+    public function index(Steps $steps)
     {
-        return view('auth.register.1');
+        $step = $steps->step('auth.register', 1);
+
+        return view('auth.register.1', compact('step'));
     }
 
     public function store(Steps $steps, Request $request)

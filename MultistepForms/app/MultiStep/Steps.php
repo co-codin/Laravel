@@ -38,6 +38,11 @@ class Steps
         return $this;
     }
 
+    public function __get($property)
+    {
+        return $this->storage->get("multistep.{$this->name}.{$this->step}.data.{$property}");
+    }
+
     protected function key()
     {
         return "multistep.{$this->name}";
