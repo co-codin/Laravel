@@ -38,6 +38,17 @@ class Steps
         return $this;
     }
 
+    public function notCompleted(...$steps)
+    {
+        foreach ($steps as $step) {
+            if (!$this->storage->get($this->key() . ".{$step}.complete")) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function __get($property)
     {
         return $this->storage->get("multistep.{$this->name}.{$this->step}.data.{$property}");
