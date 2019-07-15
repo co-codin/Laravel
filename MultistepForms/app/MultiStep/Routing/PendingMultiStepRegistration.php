@@ -36,6 +36,17 @@ class PendingMultiStepRegistration
 
     public function __destruct()
     {
-
+        collect()->times($this->steps, function ($step) {
+            Route::group([
+                'prefix' => $this->uri
+            ], function () use ($step) {
+                Route::resource($step, "{$this->controller}Step{$step}")
+                     ->only(['index', 'store'])
+                     ->names([
+                        'index' => "{$this->name}.{$step}.index",
+                        'store' => "{$this->name}.{$step}.store",
+                    ]);;
+            });
+        });
     }
 }
