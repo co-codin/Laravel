@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\{Customer, Invoice};
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -11,8 +12,10 @@ class InvoicesController extends Controller
         return view('invoices.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        
+         $customer = Customer::create($request->customer);
+         $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+         return 'finished';
     }
 }

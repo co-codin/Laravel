@@ -114,7 +114,7 @@
                                         <tr>
                                           <th class="text-center">Tax</th>
                                           <td class="text-center"><div class="input-group mb-2 mb-sm-0">
-                                              <input type="number" class="form-control" id="tax" placeholder="0">
+                                              <input type="number" class="form-control" id="tax" placeholder="0" name="invoice[tax_percent]">
                                               <div class="input-group-addon">%</div>
                                             </div></td>
                                         </tr>
