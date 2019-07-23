@@ -10,5 +10,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('invoices/create', 'InvoicesController@create')->name('invoices.create');
+
+    Route::resource('invoices', 'InvoicesController');
 });
