@@ -99,11 +99,10 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'example_query' => ExampleQuery::class,
                 'projects' => App\GraphQL\Queries\ProjectsQuery::class
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'login' => App\GraphQL\Mutations\LoginMutation::class
             ],
             'middleware' => [],
             'method'     => ['get', 'post'],
