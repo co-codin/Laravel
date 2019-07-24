@@ -31,7 +31,7 @@ class TaskType extends GraphQLType
                 'type' => Type::nonNull(Type::string())
             ],
 
-            'status_code' => [
+            'statusCode' => [
                 'type' => Type::nonNull(Type::string())
             ],
 

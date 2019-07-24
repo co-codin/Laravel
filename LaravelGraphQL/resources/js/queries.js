@@ -6,7 +6,15 @@ Vue.prototype.$apiQueries = {
         projects(projectId: $projectId) {
             id,
             title,
-            description
+            description,
+            tasks {
+                id,
+                description,
+                statusCode,
+                user {
+                    name
+                }
+            }
         }
     }`
 }
