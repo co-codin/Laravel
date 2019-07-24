@@ -3,6 +3,7 @@ import axios from 'axios';
 
 let queries = {
     dashboard: '{ projects { id, title, description } }',
+
     singleProject: `query fetchSingleProject($projectId: Int) {
         projects(projectId: $projectId) {
             id,
@@ -17,6 +18,10 @@ let queries = {
                 }
             }
         }
+    }`,
+
+    login: `mutation LoginUser($email: String, $password: String) {
+        login (email: $email, password: $password)
     }`
 }
 
