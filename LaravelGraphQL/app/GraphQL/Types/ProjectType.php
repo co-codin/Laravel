@@ -31,17 +31,17 @@ class ProjectType extends GraphQLType
                 'type' => Type::nonNull(Type::string())
             ],
 
-            'manager' => [
-                'type' => Type::nonNull(GraphQL::type('user'))
-            ],
-            
-            'tasks' => [
-                'type' => Type::listOf(GraphQL::type('task'))
-            ],
-            
-            'users' => [
-                'type' => Type::listOf(GraphQL::type('user'))
-            ],
+            // 'manager' => [
+            //     'type' => Type::nonNull(GraphQL::type('user'))
+            // ],
+            //
+            // 'tasks' => [
+            //     'type' => Type::listOf(GraphQL::type('task'))
+            // ],
+            //
+            // 'users' => [
+            //     'type' => Type::listOf(GraphQL::type('user'))
+            // ],
         ];
     }
 }

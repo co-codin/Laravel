@@ -100,6 +100,7 @@ return [
         'default' => [
             'query' => [
                 // 'example_query' => ExampleQuery::class,
+                'projects' => App\GraphQL\Queries\ProjectsQuery::class
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,

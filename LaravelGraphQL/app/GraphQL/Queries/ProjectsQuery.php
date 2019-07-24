@@ -16,5 +16,13 @@ class ProjectsQuery extends Query
         'description' => 'Retrieves projects',
     ];
 
-    
+    public function type()
+    {
+        return Type::listOf(GraphQL::type('project'));
+    }
+
+    public function resolve($root, $args)
+    {
+        return Project::all();
+    }
 }
