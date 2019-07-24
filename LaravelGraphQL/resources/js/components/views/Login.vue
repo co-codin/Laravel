@@ -34,7 +34,10 @@
 
         methods: {
             submitForm () {
-                
+                this.$query('login', {
+                    email: this.email,
+                    password: this.password
+                }).then();
             }
         }
     }

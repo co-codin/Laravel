@@ -23,9 +23,8 @@
         },
 
         created () {
-            axios.post('/graphql', {
-                query: this.$apiQueries.dashboard
-            }).then(res => this.projects = res.data.data.projects)
+            this.$query('dashboard')
+                .then(res => this.projects = res.data.data.projects)
         }
     }
 </script>

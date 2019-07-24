@@ -1958,9 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/graphql', {
-      query: this.$apiQueries.dashboard
-    }).then(function (res) {
+    this.$query('dashboard').then(function (res) {
       return _this.projects = res.data.data.projects;
     });
   }
@@ -2010,7 +2008,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    submitForm: function submitForm() {}
+    submitForm: function submitForm() {
+      this.$query('login', {
+        email: this.email,
+        password: this.password
+      }).then();
+    }
   }
 });
 
@@ -2071,11 +2074,8 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/graphql', {
-      query: this.$apiQueries.singleProject,
-      variables: {
-        projectId: this.$route.params.id
-      }
+    this.$query('singleProject', {
+      projectId: this.$route.params.id
     }).then(function (res) {
       return _this.project = res.data.data.projects[0];
     });
@@ -53090,10 +53090,29 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$apiQueries = {
+
+var queries = {
   dashboard: '{ projects { id, title, description } }',
   singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }"
+};
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryName, queryVariables) {
+  var options = {
+    url: '/graphql',
+    method: 'post',
+    data: {
+      query: queries[queryName]
+    }
+  };
+
+  if (queryVariables) {
+    options.data.variables = queryVariables;
+  }
+
+  return axios__WEBPACK_IMPORTED_MODULE_1___default()(options);
 };
 
 /***/ }),
