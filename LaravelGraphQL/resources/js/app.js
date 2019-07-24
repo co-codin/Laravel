@@ -7,7 +7,7 @@ require('./bootstrap');
 
 Vue.use(VueRouter);
 
-const router = new VueRouter();
+const router = new VueRouter({ routes });
 
 const app = new Vue({
     router,
