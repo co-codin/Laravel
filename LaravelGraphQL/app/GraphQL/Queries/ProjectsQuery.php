@@ -33,7 +33,10 @@ class ProjectsQuery extends Query
         if (isset($args['projectId'])) {
             return Project::where('id', $args['projectId'])->get();
         }
-        
-        return Project::all();
+
+        $projects = Auth::user()->projects()->get();
+        $managed = Project::where('manager_id', Auth()->user()->id)->get();
+
+        return $projects->merge($managed);
     }
 }
