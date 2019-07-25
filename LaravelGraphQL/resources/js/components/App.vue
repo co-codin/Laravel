@@ -15,7 +15,9 @@
                         <li class="nav-item">
                             <router-link class="nav-link" :to="'/'">Dashboard</router-link>
                         </li>
-
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/create'">Create Project</router-link>
+                        </li>
                         <li class="nav-item">
                             <a href="#" @click.prevent="logoff" class="nav-link">Logout</a>
                         </li>
