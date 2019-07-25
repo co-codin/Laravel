@@ -26,7 +26,7 @@
                     @click.prevent="addTask">Add Task</button>
             </div>
 
-            <!-- <task-editor v-for="task in tasks" :task="task" :users="selectedUsers" /> -->
+            <task-editor v-for="task in tasks" :task="task" :users="selectedUsers" />
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Save Project</button>
@@ -36,7 +36,11 @@
 </template>
 
 <script>
+    import TaskEditor from './../TaskEditor.vue';
+
     export default {
+        components: { TaskEditor },
+
         data () {
             return {
                 title: '',
