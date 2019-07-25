@@ -102,11 +102,17 @@ return [
                 'projects' => App\GraphQL\Queries\ProjectsQuery::class
             ],
             'mutation' => [
-                'login' => App\GraphQL\Mutations\LoginMutation::class
+                
             ],
-            'middleware' => [],
+            'middleware' => ['auth'],
             'method'     => ['get', 'post'],
         ],
+
+        'guest' => [
+            'mutation' => [
+                'login' => App\GraphQL\Mutations\LoginMutation::class
+            ],
+        ]
     ],
 
     // The types available in the application. You can then access it from the

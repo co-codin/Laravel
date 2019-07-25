@@ -53113,10 +53113,23 @@ var queries = {
   singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }",
   login: "mutation LoginUser($email: String, $password: String) {\n        login (email: $email, password: $password)\n    }"
 };
+var guestQueries = ['login'];
+
+function getApiUrl(queryName) {
+  var segment = '';
+
+  if (guestQueries.some(function (q) {
+    return q === queryName;
+  })) {
+    segment = '/guest';
+  }
+
+  return "/graphql".concat(segment);
+}
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryName, queryVariables) {
   var options = {
-    url: '/graphql',
+    url: getApiUrl(queryName),
     method: 'post',
     data: {
       query: queries[queryName]
@@ -53125,6 +53138,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryNam
 
   if (queryVariables) {
     options.data.variables = queryVariables;
+  }
+
+  var token = sessionStorage.getItem('api-token');
+
+  if (token) {
+    options.headers = {
+      Authorization: "Bearer ".concat(token)
+    };
   }
 
   return axios__WEBPACK_IMPORTED_MODULE_1___default()(options);
