@@ -26,7 +26,7 @@
                     @click.prevent="addTask">Add Task</button>
             </div>
 
-            <task-editor v-for="task in tasks" :task="task" :users="selectedUsers" />
+            <task-editor v-for="(task, index) in tasks" :task="task" :users="selectedUsers" :key="index" />
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Save Project</button>
@@ -49,6 +49,10 @@
                 selectedUsers: [],
                 tasks: []
             };
+        },
+
+        created () {
+            this.$query('users').then(res => this.users = res.data.data.users);
         },
 
         methods: {

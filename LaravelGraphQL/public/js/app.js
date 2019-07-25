@@ -2111,6 +2111,13 @@ __webpack_require__.r(__webpack_exports__);
       tasks: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    this.$query('users').then(function (res) {
+      return _this.users = res.data.data.users;
+    });
+  },
   methods: {
     submitForm: function submitForm() {},
     addTask: function addTask() {
@@ -38168,8 +38175,9 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._l(_vm.tasks, function(task) {
+        _vm._l(_vm.tasks, function(task, index) {
           return _c("task-editor", {
+            key: index,
             attrs: { task: task, users: _vm.selectedUsers }
           })
         }),
@@ -54127,7 +54135,8 @@ var queries = {
   singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }",
   login: "mutation LoginUser($email: String, $password: String) {\n        login (email: $email, password: $password)\n    }",
   check: "query CheckUserAuth {\n        check\n    }",
-  register: "mutation RegisterUser($displayName: String, $email: String, $password: String) {\n        register (displayName: $displayName, email: $email, password: $password)\n    }"
+  register: "mutation RegisterUser($displayName: String, $email: String, $password: String) {\n        register (displayName: $displayName, email: $email, password: $password)\n    }",
+  users: "query GetUser {\n        users {\n            id,\n            name\n        }\n    }"
 };
 var guestQueries = ['login', 'register'];
 
