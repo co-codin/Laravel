@@ -100,7 +100,8 @@ return [
         'default' => [
             'query' => [
                 'projects' => App\GraphQL\Queries\ProjectsQuery::class,
-                'check' => App\GraphQL\Queries\CheckAuthQuery::class
+                'check' => App\GraphQL\Queries\CheckAuthQuery::class,
+                'users' => App\GraphQL\Queries\UsersQuery::class
             ],
             'mutation' => [
 
