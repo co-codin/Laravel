@@ -26,11 +26,15 @@ let queries = {
 
     check: `query CheckUserAuth {
         check
-    }`
+    }`,
+
+    register: `mutation RegisterUser($displayName: String, $email: String, $password: String) {
+        register (displayName: $displayName, email: $email, password: $password)
+    }`,
 }
 
 let guestQueries = [
-    'login'
+    'login', 'register'
 ];
 
 function getApiUrl(queryName) {

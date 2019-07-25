@@ -2,9 +2,9 @@
 
 namespace App\GraphQL\Mutations;
 
-use Auth;
 use App\User;
 use GraphQL;
+use Illuminate\Support\Str;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 
