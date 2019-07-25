@@ -1914,6 +1914,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
+    this.$appEvents.$on('log-on', function () {
+      return _this.loggedIn = true;
+    });
+
     if (sessionStorage.getItem('api-token')) {
       this.loggedIn = true;
     }
@@ -2097,6 +2103,8 @@ __webpack_require__.r(__webpack_exports__);
 
         if (token) {
           sessionStorage.setItem('api-token', token);
+
+          _this.$appEvents.$emit('log-on');
 
           _this.$router.push('/');
         } else {
@@ -52723,6 +52731,7 @@ router.beforeEach(function (to, from, next) {
     return router.push('/login');
   });
 });
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$appEvents = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: router,
   render: function render(h) {
