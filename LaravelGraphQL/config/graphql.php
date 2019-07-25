@@ -99,10 +99,11 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'projects' => App\GraphQL\Queries\ProjectsQuery::class
+                'projects' => App\GraphQL\Queries\ProjectsQuery::class,
+                'check' => App\GraphQL\Queries\CheckAuthQuery::class
             ],
             'mutation' => [
-                
+
             ],
             'middleware' => ['auth'],
             'method'     => ['get', 'post'],

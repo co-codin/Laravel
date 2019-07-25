@@ -15,6 +15,9 @@ export default [
 
     {
         path: '/login',
-        component: Login
+        component: Login,
+        meta: {
+            requiresAuth: false
+        }
     },
 ];
