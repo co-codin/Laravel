@@ -8,17 +8,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 
-class LoginMutation extends Mutation
+class RegisterMutation extends Mutation
 {
     protected $attributes = [
-        'name' => 'Login'
+        'name' => 'RegisterMutation'
     ];
 
     public function args()
     {
         return [
+            'displayName' => [ 'type' => Type::string()],
             'email' => [ 'type' => Type::string()],
-            'password' => [ 'type' => Type::string()],
+            'password' => [ 'type' => Type::string()]
         ];
     }
 
@@ -29,15 +30,13 @@ class LoginMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $credentials = [
+        $user = User::create([
+            'name' => $args['displayName'],
             'email' => $args['email'],
-            'password' => $args['password'],
-        ];
+            'password' => bcrypt($args['password']),
+            'api_token' => Str::random(60)
+        ]);
 
-        if (Auth::guard('web')->attempt($credentials)) {
-            return Auth::guard('web')->user()->api_token;
-        }
-
-        return null;
+        return $user->api_token;
     }
 }
