@@ -54147,7 +54147,8 @@ var queries = {
   login: "mutation LoginUser($email: String, $password: String) {\n        login (email: $email, password: $password)\n    }",
   check: "query CheckUserAuth {\n        check\n    }",
   register: "mutation RegisterUser($displayName: String, $email: String, $password: String) {\n        register (displayName: $displayName, email: $email, password: $password)\n    }",
-  users: "query GetUser {\n        users {\n            id,\n            name\n        }\n    }"
+  users: "query GetUser {\n        users {\n            id,\n            name\n        }\n    }",
+  saveProject: "mutation SaveProject ($project: ProjectInput) {\n        saveProject (project: $project)\n    }"
 };
 var guestQueries = ['login', 'register'];
 

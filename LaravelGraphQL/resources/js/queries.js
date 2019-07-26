@@ -37,6 +37,10 @@ let queries = {
             id,
             name
         }
+    }`,
+
+    saveProject: `mutation SaveProject ($project: ProjectInput) {
+        saveProject (project: $project)
     }`
 }
 
