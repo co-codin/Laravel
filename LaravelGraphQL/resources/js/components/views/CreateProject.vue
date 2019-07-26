@@ -57,7 +57,14 @@
 
         methods: {
             submitForm() {
-
+                this.$query('saveProject', {
+                    project: {
+                        title: this.title,
+                        description: this.description,
+                        users: this.selectedUsers.map(u => u.id),
+                        tasks: this.tasks
+                    }
+                });
             },
 
             addTask() {

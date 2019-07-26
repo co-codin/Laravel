@@ -2119,7 +2119,18 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    submitForm: function submitForm() {},
+    submitForm: function submitForm() {
+      this.$query('saveProject', {
+        project: {
+          title: this.title,
+          description: this.description,
+          users: this.selectedUsers.map(function (u) {
+            return u.id;
+          }),
+          tasks: this.tasks
+        }
+      });
+    },
     addTask: function addTask() {
       this.tasks.push({
         title: '',
