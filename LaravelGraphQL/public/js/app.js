@@ -2120,6 +2120,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
+      var _this2 = this;
+
       this.$query('saveProject', {
         project: {
           title: this.title,
@@ -2129,6 +2131,8 @@ __webpack_require__.r(__webpack_exports__);
           }),
           tasks: this.tasks
         }
+      }).then(function (res) {
+        return _this2.$router.push('/');
       });
     },
     addTask: function addTask() {
@@ -54203,7 +54207,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_views_Project_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/views/Project.vue */ "./resources/js/components/views/Project.vue");
 /* harmony import */ var _components_views_Login_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/views/Login.vue */ "./resources/js/components/views/Login.vue");
 /* harmony import */ var _components_views_Register_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/views/Register.vue */ "./resources/js/components/views/Register.vue");
-/* harmony import */ var _components_views_CreateProject_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/views/CreateProject.vue */ "./resources/js/components/views/CreateProject.vue");
+/* harmony import */ var _components_views_CreateProject_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/views/CreateProject.vue */ "./resources/js/components/views/CreateProject.vue");
 
 
 
@@ -54217,7 +54221,7 @@ __webpack_require__.r(__webpack_exports__);
   component: _components_views_Project_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/create',
-  component: _components_views_CreateProject_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _components_views_CreateProject_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/login',
   component: _components_views_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
