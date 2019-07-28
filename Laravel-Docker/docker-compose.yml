@@ -15,3 +15,12 @@ services:
             dockerfile: docker/Fpm.Dockerfile
         volumes:
             - ./:/var/www/laravel-docker
+        links:
+            - mysql
+    mysql:
+        image: mysql:5.7
+        ports:
+            - 33061:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=laravel
