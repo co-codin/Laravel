@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+    nginx:
+        image: nginx
+        ports:
+            - 8098:80
+    fpm:
+        build:
+            context: .
+            dockerfile: docker/fpm.Dockerfile
