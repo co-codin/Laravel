@@ -9,6 +9,8 @@ services:
             - 8098:80
         links:
             - fpm
+        volumes:
+            - ./:/var/www/laravel-docker
     fpm:
         build:
             context: .
