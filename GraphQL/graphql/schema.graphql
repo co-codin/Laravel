@@ -8,4 +8,11 @@ type User {
     id: ID!
     name: String!
     email: String!
+    jobs: [Job!]! @field(resolver: "App\\GraphQL\\Types\\UserType@jobs")
+}
+
+
+type Job {
+    id: ID!
+    title: String!
 }
