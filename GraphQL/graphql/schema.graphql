@@ -1,6 +1,7 @@
 type Query {
-    users: [User!]! @field(resolver: "UserQuery@all")
-    user(id: ID!): User @field(resolver: "UserQuery@find")
+    # users: [User!]! @field(resolver = "UserQuery@all")
+    users: [User!]! @all
+    user(id: ID! @eq): User @find
 }
 
 type User {
