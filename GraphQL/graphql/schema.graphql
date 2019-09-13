@@ -1,6 +1,7 @@
 type Query {
-    # users: [User!]! @field(resolver = "UserQuery@all")
-    users: [User!]! @all
+    # users(page: Int = 1, count: Int = 15): [User!]! @field(resolver: "UserQuery@paginate")
+    # users: [User!]! @all
+    users: [User!]! @paginate
     user(id: ID! @eq): User @find
 }
 
@@ -9,7 +10,7 @@ type User {
     name: String!
     email: String!
     # jobs: [Job!]! @field(resolver: "App\\GraphQL\\Types\\UserType@jobs") many Queries
-    jobs: [Job!]! @hasMany
+    jobs: [Job!]! @hasMany(type: "paginator")
 }
 
 

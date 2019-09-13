@@ -15,4 +15,14 @@ class UserQuery
     {
         return User::find($args['id']);
     }
+
+    // public function paginate($root, array $args)
+    // {
+    //     return User::query()->paginate(
+    //         $args['count'],
+    //         ['*'],
+    //         'page',
+    //         $args['page']
+    //     );
+    // }
 }
