@@ -1,6 +1,6 @@
 type Query {
-    users: [User!]! @paginate(type: "paginator" model: "App\\User")
-    user(id: ID @eq): User @find(model: "App\\User")
+    users: [User!]! @field(resolver: "UserQuery@all")
+    user(id: ID): User @field(resolver: "UserQuery@find")
 }
 
 type User {
