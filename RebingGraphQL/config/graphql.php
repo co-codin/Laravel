@@ -94,11 +94,11 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => \App\GraphQL\Queries\UsersQuery::class,
-                'posts' => \App\GraphQL\Queries\PostsQuery::class
+                'users' => \App\GraphQL\Query\UsersQuery::class,
+                'posts' => \App\GraphQL\Query\PostsQuery::class
             ],
             'mutation' => [
-
+                'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class
             ],
             'middleware' => [],
             'method'     => ['get', 'post'],

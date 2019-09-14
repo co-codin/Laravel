@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Queries;
+namespace App\GraphQL\Query;
 
 use App\Post;
 use GraphQL;
