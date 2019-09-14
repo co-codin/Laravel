@@ -115,6 +115,7 @@ return [
     //
     'types' => [
         'user'           => \App\GraphQL\Type\UserType::class,
+        'post'           => \App\GraphQL\Type\PostType::class
         // 'relation_example'  => ExampleRelationType::class,
     ],
 
