@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Types;
+namespace App\GraphQL\Type;
 
 use App\User;
 use GraphQL\Type\Definition\Type;
@@ -37,5 +37,5 @@ class UserType extends GraphQLType
     protected function resolveEmailField($root, $args)
     {
         return strtolower($root->email);
-    }    
+    }
 }

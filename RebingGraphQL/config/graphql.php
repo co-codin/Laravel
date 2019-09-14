@@ -1,10 +1,5 @@
 <?php
 
-use example\Type\ExampleType;
-use example\Query\ExampleQuery;
-use example\Mutation\ExampleMutation;
-use example\Type\ExampleRelationType;
-
 return [
 
     // The prefix for routes
@@ -99,10 +94,10 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'example_query' => ExampleQuery::class,
+                'users' => \App\GraphQL\Queries\UsersQuery::class
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+
             ],
             'middleware' => [],
             'method'     => ['get', 'post'],
@@ -119,7 +114,7 @@ return [
     // ]
     //
     'types' => [
-        // 'example'           => ExampleType::class,
+        'user'           => \App\GraphQL\Type\UserType::class,
         // 'relation_example'  => ExampleRelationType::class,
     ],
 
