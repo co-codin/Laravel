@@ -53,6 +53,10 @@
         },
 
         created () {
+            this.$appEvents.$on('log-on', () => {
+                this.loggedIn = true
+            });
+
             if (sessionStorage.getItem('api-token')) {
                 this.loggedIn = true;
             }
