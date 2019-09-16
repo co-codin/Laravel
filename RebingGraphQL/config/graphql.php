@@ -95,7 +95,8 @@ return [
         'default' => [
             'query' => [
                 'users' => \App\GraphQL\Query\UsersQuery::class,
-                'posts' => \App\GraphQL\Query\PostsQuery::class
+                'posts' => \App\GraphQL\Query\PostsQuery::class,
+
             ],
             'mutation' => [
                 'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class
@@ -116,7 +117,8 @@ return [
     //
     'types' => [
         'user'           => \App\GraphQL\Type\UserType::class,
-        'post'           => \App\GraphQL\Type\PostType::class
+        'post'           => \App\GraphQL\Type\PostType::class,
+        'project'        => \App\GraphQL\Type\ProjectType::class
         // 'relation_example'  => ExampleRelationType::class,
     ],
 
