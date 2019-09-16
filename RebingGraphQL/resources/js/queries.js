@@ -19,7 +19,11 @@ let queries = {
                 }
             }
         }
-    }`
+    }`,
+
+    login: `mutation LoginUser($email: String, $password: String) {
+        login(email: $email, password: $password)
+    }`,
 }
 
 
