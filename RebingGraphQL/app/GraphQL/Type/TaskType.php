@@ -3,45 +3,42 @@
 namespace App\GraphQL\Type;
 
 use GraphQL;
-use App\Project;
+use App\Task;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class ProjectType extends GraphQLType
+class TaskType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Project',
-        'description' => 'A project',
-        'model' => Project::class
+        'name' => 'Task',
+        'description' => 'A task',
+        'model' => Task::class,
     ];
 
-    public function fields(): array
+    public function fields()
     {
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'The project id'
+                'description' => 'The project\'s ID',
             ],
-
             'title' => [
                 'type' => Type::nonNull(Type::string())
             ],
-
             'description' => [
                 'type' => Type::nonNull(Type::string())
             ],
-
-            'manager' => [
-                'type' => Type::nonNull(GraphQL::type('user'))
+            'statusCode' => [
+                'type' => Type::nonNull(Type::string())
             ],
-
-            'tasks' => [
-                'type' => Type::listOf(GraphQL::type('task'))
-            ],
-
-            'users' => [
-                'type' => Type::listOf(GraphQL::type('user'))
+            'project' => [
+                'type' => Type::nonNull(GraphQL::type('project'))
             ]
         ];
+    }
+
+    protected function resolveStatusCodeField($root, $args)
+    {
+        return $root->status_code;
     }
 }

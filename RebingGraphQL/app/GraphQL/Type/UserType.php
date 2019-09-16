@@ -33,10 +33,10 @@ class UserType extends GraphQLType
                 'description' => 'The name of user'
             ],
 
-            'posts' => [
-                'type' => Type::listOf(GraphQL::type('post')),
-                'description'   => 'A list of posts written by the user'
-            ]
+            // 'posts' => [
+            //     'type' => Type::listOf(GraphQL::type('post')),
+            //     'description'   => 'A list of posts written by the user'
+            // ]
         ];
     }
 
