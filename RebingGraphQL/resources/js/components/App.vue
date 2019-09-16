@@ -13,7 +13,10 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul v-if="loggedIn" class="navbar-nav">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Dashboard</a>
+                            <router-link class="nav-link" :to="'/'">Dashboard</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/create'">Create Project</router-link>
                         </li>
                         <li class="nav-item">
                             <a href="#" @click.prevent="logoff" class="nav-link">Logout</a>
@@ -43,19 +46,18 @@
         </section>
     </div>
 </template>
-
 <script>
     export default {
-        data () {
+        data() {
             return {
                 loggedIn: false
             };
         },
 
-        created () {
+        created() {
             this.$appEvents.$on('log-on', () => {
-                this.loggedIn = true
-            });
+                this.loggedIn = true;
+            })
 
             if (sessionStorage.getItem('api-token')) {
                 this.loggedIn = true;
