@@ -33,6 +33,9 @@ class TaskType extends GraphQLType
             ],
             'project' => [
                 'type' => Type::nonNull(GraphQL::type('project'))
+            ],
+            'user' => [
+                'type' => Type::nonNull(GraphQL::type('user'))
             ]
         ];
     }

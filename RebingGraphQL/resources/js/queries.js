@@ -8,7 +8,16 @@ let queries = {
         projects(projectId: $projectId) {
             id,
             title,
-            description
+            description,
+            tasks {
+                id,
+                title,
+                description,
+                statusCode,
+                user {
+                    name
+                }
+            }
         }
     }`
 }
