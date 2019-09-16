@@ -96,7 +96,7 @@ return [
             'query' => [
                 'users' => \App\GraphQL\Query\UsersQuery::class,
                 'posts' => \App\GraphQL\Query\PostsQuery::class,
-
+                'projects' => \App\GraphQL\Query\ProjectsQuery::class,
             ],
             'mutation' => [
                 'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class
