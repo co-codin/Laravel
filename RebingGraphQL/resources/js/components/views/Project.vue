@@ -18,16 +18,10 @@
         },
 
         created () {
-            axios.post('/graphql', {
-                query: `{
-                    projects(projectId: ${this.$route.params.id}) {
-                        id,
-                        title,
-                        description
-                    }
-                }`
+            this.$query('singleProject', {
+                projectId: this.$route.params.id
             }).then(res => {
-                this.project = res.data.data.projects[0]
+                this.project = res.data.data.projects[0];
             })
         }
     }
