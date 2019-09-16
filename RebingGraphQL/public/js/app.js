@@ -53123,12 +53123,26 @@ __webpack_require__.r(__webpack_exports__);
 var queries = {
   dashboard: '{projects{id,title,description}}',
   singleProject: "query fetchSingleProject($projectId: Int) {\n        projects(projectId: $projectId) {\n            id,\n            title,\n            description,\n            tasks {\n                id,\n                title,\n                description,\n                statusCode,\n                user {\n                    name\n                }\n            }\n        }\n    }",
-  login: "mutation LoginUser($email: String, $password: String) {\n        login(email: $email, password: $password)\n    }"
+  login: "mutation LoginUser($email: String, $password: String) {\n        login(email: $email, password: $password)\n    }",
+  register: "mutation RegisterUser($displayName: String, $email: String, $password: String) {\n        register(displayName: $displayName, email: $email, password: $password)\n    }"
 };
+var guestQueries = ['login', 'register'];
+
+function getApiUrl(queryName) {
+  var segment = '';
+
+  if (guestQueries.some(function (q) {
+    return q === queryName;
+  })) {
+    segment = '/guest';
+  }
+
+  return "/graphql".concat(segment);
+}
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryName, queryVariables) {
   var options = {
-    url: '/graphql',
+    url: getApiUrl(queryName),
     method: 'POST',
     data: {
       query: queries[queryName]
@@ -53137,6 +53151,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$query = function (queryNam
 
   if (queryVariables) {
     options.data.variables = queryVariables;
+  }
+
+  var token = sessionStorage.getItem('api-token');
+
+  if (token) {
+    options.headers = {
+      Authorization: "Bearer ".concat(token)
+    };
   }
 
   return axios__WEBPACK_IMPORTED_MODULE_1___default()(options);

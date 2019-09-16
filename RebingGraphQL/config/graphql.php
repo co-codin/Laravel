@@ -94,17 +94,21 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'users' => \App\GraphQL\Query\UsersQuery::class,
-                'posts' => \App\GraphQL\Query\PostsQuery::class,
+                // 'users' => \App\GraphQL\Query\UsersQuery::class,
+                // 'posts' => \App\GraphQL\Query\PostsQuery::class,
                 'projects' => \App\GraphQL\Query\ProjectsQuery::class,
             ],
             'mutation' => [
-                'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class,
-                'login' => \App\GraphQL\Mutation\LoginMutation::class
+                // 'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class,
             ],
             'middleware' => [],
             'method'     => ['get', 'post'],
         ],
+        'guest' => [
+            'mutation' => [
+                'login' => \App\GraphQL\Mutation\LoginMutation::class
+            ]
+        ]
     ],
 
     // The types available in the application. You can then access it from the
@@ -117,10 +121,9 @@ return [
     // ]
     //
     'types' => [
-        'user'           => \App\GraphQL\Type\UserType::class,
-        'post'           => \App\GraphQL\Type\PostType::class,
-        'project'        => \App\GraphQL\Type\ProjectType::class,
-        'task'        => \App\GraphQL\Type\TaskType::class
+        'project' => App\GraphQL\Type\ProjectType::class,
+        'user' => App\GraphQL\Type\UserType::class,
+        'task' => App\GraphQL\Type\TaskType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.
