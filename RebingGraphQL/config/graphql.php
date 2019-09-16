@@ -99,7 +99,8 @@ return [
                 'projects' => \App\GraphQL\Query\ProjectsQuery::class,
             ],
             'mutation' => [
-                'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class
+                'createUser' => \App\GraphQL\Mutation\CreateUserMutation::class,
+                'login' => \App\GraphQL\Mutation\LoginMutation::class
             ],
             'middleware' => [],
             'method'     => ['get', 'post'],

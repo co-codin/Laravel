@@ -1846,10 +1846,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
+      var _this = this;
+
       this.$query('login', {
         email: this.email,
         password: this.password
-      }).then(function (res) {});
+      }).then(function (res) {
+        var token = res.data.data.login;
+
+        if (token) {
+          sessionStorage.setItem('api-token', token);
+
+          _this.$router.push('/');
+        } else {
+          _this.errorMessage = 'The email address and/or password is incorrect.';
+        }
+      });
     }
   }
 });
