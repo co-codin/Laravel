@@ -1955,6 +1955,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitForm: function submitForm() {
+      var _this2 = this;
+
       this.$query('saveProject', {
         project: {
           title: this.title,
@@ -1964,6 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
           }),
           tasks: this.tasks
         }
+      }).then(function (res) {
+        _this2.$router.push('/');
       });
     },
     addTask: function addTask() {
@@ -54209,7 +54213,7 @@ var queries = {
   register: "mutation RegisterUser($displayName: String, $email: String, $password: String) {\n        register(displayName: $displayName, email: $email, password: $password)\n    }",
   check: "query checkUserAuth {\n        check\n    }",
   users: "query GetUser {\n        users {\n            id,\n            name\n        }\n    }",
-  saveProject: "mutation SaveProject($project: ProjectInput) {\n        saveProject(project: $project)\n    }"
+  saveProject: "mutation createProject($project: ProjectInput) {\n        saveProject(project: $project)\n    }"
 };
 var guestQueries = ['login', 'register'];
 

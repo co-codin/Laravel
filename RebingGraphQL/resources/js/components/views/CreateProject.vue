@@ -67,6 +67,8 @@
                         users: this.selectedUsers.map(u => u.id),
                         tasks: this.tasks
                     }
+                }).then(res => {
+                    this.$router.push('/')
                 })
             },
 
