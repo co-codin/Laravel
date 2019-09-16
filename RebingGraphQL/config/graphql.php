@@ -125,6 +125,9 @@ return [
         'project' => App\GraphQL\Type\ProjectType::class,
         'user' => App\GraphQL\Type\UserType::class,
         'task' => App\GraphQL\Type\TaskType::class,
+
+        'projectType' => App\GraphQL\Input\ProjectInput::class,
+        'taskType' => App\GraphQL\Input\TaskInput::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.
