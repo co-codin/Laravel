@@ -2064,23 +2064,26 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    submitForm: function submitForm() {// this.$query('register', {
-      //     displayName: this.displayName,
-      //     email: this.email,
-      //     password: this.password
-      // }).then(res => {
-      //     let token = res.data.data.register;
-      //
-      //     if (token) {
-      //         sessionStorage.setItem('api-token', token);
-      //         this.$appEvents.$emit('log-on');
-      //         this.$router.push('/');
-      //     } else {
-      //         this.errorMessage = 'An error occurred.';
-      //     }
-      //
-      //
-      // });
+    submitForm: function submitForm() {
+      var _this = this;
+
+      this.$query('register', {
+        displayName: this.displayName,
+        email: this.email,
+        password: this.password
+      }).then(function (res) {
+        var token = res.data.data.register;
+
+        if (token) {
+          sessionStorage.setItem('api-token', token);
+
+          _this.$appEvents.$emit('log-on');
+
+          _this.$router.push('/');
+        } else {
+          _this.errorMessage = 'An error occurred.';
+        }
+      });
     }
   }
 });

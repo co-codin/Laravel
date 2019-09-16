@@ -38,23 +38,21 @@ export default {
     },
     methods: {
         submitForm() {
-            // this.$query('register', {
-            //     displayName: this.displayName,
-            //     email: this.email,
-            //     password: this.password
-            // }).then(res => {
-            //     let token = res.data.data.register;
-            //
-            //     if (token) {
-            //         sessionStorage.setItem('api-token', token);
-            //         this.$appEvents.$emit('log-on');
-            //         this.$router.push('/');
-            //     } else {
-            //         this.errorMessage = 'An error occurred.';
-            //     }
-            //
-            //
-            // });
+            this.$query('register', {
+                displayName: this.displayName,
+                email: this.email,
+                password: this.password
+            }).then(res => {
+                let token = res.data.data.register;
+
+                if (token) {
+                    sessionStorage.setItem('api-token', token);
+                    this.$appEvents.$emit('log-on');
+                    this.$router.push('/');
+                } else {
+                    this.errorMessage = 'An error occurred.';
+                }
+            });
         }
     }
 }

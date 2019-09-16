@@ -3,7 +3,7 @@
 namespace App\GraphQL\Query;
 
 use GraphQL;
-use App\Project;
+use App\{Project, User};
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 
@@ -30,7 +30,10 @@ class ProjectsQuery extends Query
         if (isset($args['projectId'])) {
             return Project::where('id', $args['projectId'])->get();
         }
-        
-        return Project::all();
+
+        $projects = auth()->user()->projects()->get();
+        $managed = Project::where('manager_id', auth()->id())->get();
+
+        return $projects->merge($managed);
     }
 }
