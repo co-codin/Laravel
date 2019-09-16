@@ -94,8 +94,8 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'users' => \App\GraphQL\Query\UsersQuery::class,
-                // 'posts' => \App\GraphQL\Query\PostsQuery::class,
+                'users' => \App\GraphQL\Query\UsersQuery::class,
+                'check' => \App\GraphQL\Query\CheckAuthQuery::class,
                 'projects' => \App\GraphQL\Query\ProjectsQuery::class,
             ],
             'mutation' => [

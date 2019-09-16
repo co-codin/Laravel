@@ -31,6 +31,13 @@ let queries = {
 
     check: `query checkUserAuth {
         check
+    }`,
+
+    users: `query GetUser {
+        users {
+            id,
+            name
+        }
     }`
 }
 
